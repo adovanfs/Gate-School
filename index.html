@@ -41,8 +41,10 @@ a{color:inherit;text-decoration:none}
 [data-theme=light] .orb{opacity:.35}
 @keyframes float{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(60px,-40px) scale(1.1)}66%{transform:translate(-40px,60px) scale(.95)}}
 .bg-grid{position:fixed;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse at center,black 20%,transparent 70%);-webkit-mask-image:radial-gradient(ellipse at center,black 20%,transparent 70%);opacity:.5}
-header{position:sticky;top:0;z-index:50;backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);background:rgba(0,0,0,.72);border-bottom:1px solid var(--border)}
+header{position:sticky;top:0;z-index:50;backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);background:rgba(0,0,0,.72);border-bottom:1px solid transparent;transition:background .3s var(--ease),border-color .3s var(--ease),box-shadow .3s var(--ease)}
 [data-theme=light] header{background:rgba(250,250,250,.72)}
+header.scrolled{border-bottom-color:var(--border);box-shadow:0 8px 24px rgba(0,0,0,.15)}
+[data-theme=light] header.scrolled{box-shadow:0 8px 24px rgba(0,0,0,.05)}
 .hd-in{display:flex;align-items:center;justify-content:space-between;height:60px;padding:0 20px;max-width:1080px;margin:0 auto}
 .brand{display:flex;align-items:center;gap:10px;font-weight:600;font-size:15px;letter-spacing:-.02em}
 .brand-logo{width:28px;height:28px;transition:transform .5s var(--spring)}
@@ -62,10 +64,10 @@ main{flex:1;position:relative;z-index:2}
 .badge{display:inline-flex;align-items:center;gap:8px;padding:6px 14px 6px 8px;border-radius:999px;background:var(--card);border:1px solid var(--border);font-size:13px;color:var(--fg-soft);margin-bottom:28px;backdrop-filter:blur(20px);animation:up .6s var(--ease) both}
 .badge-dot{width:18px;height:18px;border-radius:50%;background:var(--success);box-shadow:0 0 12px var(--success);animation:pulse 2s ease-in-out infinite}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(.85)}}
-.hero h1{font-size:clamp(2.5rem,8vw,5.5rem);font-weight:700;letter-spacing:-.045em;line-height:1.02;margin-bottom:24px;background:linear-gradient(180deg,var(--fg) 30%,var(--fg-muted));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:up .7s var(--ease) .1s both}
+.hero h1{font-size:clamp(2.5rem,8vw,5.5rem);font-weight:700;letter-spacing:-.045em;line-height:1.02;margin-bottom:24px;background:linear-gradient(180deg,var(--fg) 30%,var(--fg-muted));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:up .7s var(--ease) .1s both;will-change:transform}
 .hero h1 em{font-style:italic;font-family:var(--serif);font-weight:400;letter-spacing:-.02em}
-.hero-sub{font-size:clamp(1.05rem,2vw,1.35rem);color:var(--fg-soft);max-width:640px;margin:0 auto 40px;line-height:1.5;animation:up .7s var(--ease) .2s both}
-.hero-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;animation:up .7s var(--ease) .3s both}
+.hero-sub{font-size:clamp(1.05rem,2vw,1.35rem);color:var(--fg-soft);max-width:640px;margin:0 auto 40px;line-height:1.5;animation:up .7s var(--ease) .2s both;will-change:transform}
+.hero-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;animation:up .7s var(--ease) .3s both;will-change:transform}
 @keyframes up{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 .btn{display:inline-flex;align-items:center;gap:8px;padding:14px 26px;border-radius:999px;font-size:15px;font-weight:600;letter-spacing:-.01em;transition:all .25s var(--ease);white-space:nowrap;cursor:pointer;border:1px solid transparent}
 .btn-p{background:var(--accent);color:var(--accent-fg);box-shadow:0 0 0 0 var(--glow)}
@@ -74,7 +76,7 @@ main{flex:1;position:relative;z-index:2}
 .btn-g{background:transparent;color:var(--fg);border-color:var(--border-s)}
 .btn-g:hover{background:var(--card-h);border-color:var(--fg-soft);transform:translateY(-2px)}
 .btn-sm{padding:8px 16px;font-size:13px}
-.stack{position:relative;perspective:1400px;width:100%;height:380px;margin:60px auto 0;max-width:640px;z-index:2}
+.stack{position:relative;perspective:1400px;width:100%;height:380px;margin:60px auto 0;max-width:640px;z-index:2;will-change:transform}
 .stack-card{position:absolute;inset:0;border-radius:32px;background:linear-gradient(135deg,var(--bg-elev),var(--bg-soft));border:1px solid var(--border-s);padding:36px 32px;display:flex;flex-direction:column;justify-content:space-between;transform-style:preserve-3d;box-shadow:0 30px 60px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.06);transition:transform .9s var(--ease)}
 .stack-card:nth-child(1){transform:rotateY(-18deg) rotateX(8deg) translateZ(-60px) translateX(-60px);opacity:.85}
 .stack-card:nth-child(2){transform:rotateY(-9deg) rotateX(4deg) translateZ(-30px) translateX(-30px);opacity:.92}
@@ -102,8 +104,7 @@ main{flex:1;position:relative;z-index:2}
 .bar{flex:1;height:4px;border-radius:999px;background:var(--border);overflow:hidden}
 .bar-fill{height:100%;background:var(--accent);border-radius:inherit;transition:width .6s var(--ease);box-shadow:0 0 12px var(--glow)}
 .bar-txt{font-size:12px;font-weight:600;color:var(--fg-soft);min-width:36px;text-align:right;font-variant-numeric:tabular-nums}
-.lesson{max-width:720px;margin:0 auto;padding:40px 24px 80px;position:relative;z-index:2;animation:fade .4s var(--ease) both}
-@keyframes fade{from{opacity:0}to{opacity:1}}
+.lesson{max-width:720px;margin:0 auto;padding:40px 24px 80px;position:relative;z-index:2}
 .crumb{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--fg-muted);margin-bottom:24px;flex-wrap:wrap}
 .crumb a:hover{color:var(--fg)}
 .lesson h1{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:700;letter-spacing:-.035em;line-height:1.1;margin-bottom:16px}
@@ -176,8 +177,6 @@ main{flex:1;position:relative;z-index:2}
 .footer{position:relative;z-index:2;margin-top:auto;padding:40px 24px;border-top:1px solid var(--border);text-align:center;font-size:13px;color:var(--fg-muted)}
 .footer a{color:var(--fg-soft);transition:color .2s}
 .footer a:hover{color:var(--fg)}
-.empty{text-align:center;padding:60px 20px;color:var(--fg-muted)}
-.empty-icon{font-size:2.5rem;margin-bottom:12px;opacity:.4}
 .confetti{position:fixed;inset:0;pointer-events:none;z-index:999;overflow:hidden}
 .cf{position:absolute;width:8px;height:8px;opacity:.9;animation:cfFall 2.5s ease-out forwards}
 @keyframes cfFall{0%{transform:translateY(-20px) rotate(0);opacity:1}100%{transform:translateY(100vh) rotate(720deg);opacity:0}}
@@ -190,9 +189,34 @@ main{flex:1;position:relative;z-index:2}
 .orb{filter:blur(60px)}.stat-row{flex-direction:column;text-align:center}
 }
 ::selection{background:var(--fg);color:var(--bg)}
+
+/* ============ Scroll Reveal 3D ============ */
+.reveal{opacity:0;transform:perspective(1000px) translateY(36px) rotateX(-7deg) translateZ(-40px) scale(.97);transform-origin:center bottom;transition:opacity .9s var(--ease),transform 1.1s var(--ease);transition-delay:var(--reveal-delay,0s);will-change:opacity,transform;backface-visibility:hidden}
+.reveal.visible{opacity:1;transform:perspective(1000px) translateY(0) rotateX(0) translateZ(0) scale(1)}
+.levels .lvl:nth-child(1){--reveal-delay:.05s}
+.levels .lvl:nth-child(2){--reveal-delay:.12s}
+.levels .lvl:nth-child(3){--reveal-delay:.19s}
+.levels .lvl:nth-child(4){--reveal-delay:.26s}
+.levels .lvl:nth-child(5){--reveal-delay:.33s}
+.stats .stat:nth-child(1){--reveal-delay:.05s}
+.stats .stat:nth-child(2){--reveal-delay:.18s}
+.stats .stat:nth-child(3){--reveal-delay:.31s}
+.lesson>.reveal:nth-child(1){--reveal-delay:0s}
+.lesson>.reveal:nth-child(2){--reveal-delay:.06s}
+.lesson>.reveal:nth-child(3){--reveal-delay:.12s}
+.lesson>.reveal:nth-child(4){--reveal-delay:.18s}
+.lesson>.reveal:nth-child(5){--reveal-delay:.24s}
+.lesson>.reveal:nth-child(6){--reveal-delay:.30s}
+.lesson>.reveal:nth-child(7){--reveal-delay:.36s}
+@media(prefers-reduced-motion:reduce){
+.reveal{opacity:1!important;transform:none!important;transition:none!important}
+*{animation-duration:.01ms!important;transition-duration:.01ms!important}
+}
+.scroll-progress{position:fixed;top:0;left:0;height:2px;width:100%;background:linear-gradient(90deg,var(--accent),#a0a0a0);z-index:100;transform:scaleX(0);transform-origin:left center;transition:transform .08s linear;box-shadow:0 0 12px var(--glow);pointer-events:none}
 </style>
 </head>
 <body>
+<div class="scroll-progress"></div>
 <div class="bg-3d"><div class="orb orb1"></div><div class="orb orb2"></div><div class="orb orb3"></div></div>
 <div class="bg-grid"></div>
 
@@ -226,8 +250,7 @@ main{flex:1;position:relative;z-index:2}
 </footer>
 
 <script>
-// ============ I18N ============
-const I18N = {
+const I18N={
 id:{
 brand:'Gate School',
 nav:{home:'Beranda',curriculum:'Kurikulum',progress:'Progres',about:'Tentang'},
@@ -262,8 +285,7 @@ comingSoon:'📝 Lesson content not written yet. Add it in the LESSONS object in
 }
 };
 
-// ============ CURRICULUM ============
-const CURRICULUM = [
+const CURRICULUM=[
 {id:'level-1',num:'01',title:{id:'Pemula',en:'Beginner'},desc:{id:'Kenalan sama AI, pahami cara kerjanya, dan tulis prompt pertamamu.',en:'Meet AI, understand how it works, and write your first prompt.'},lessons:[
 {slug:'01-apa-itu-ai',title:{id:'Apa Itu AI & LLM?',en:'What Are AI & LLMs?'}},
 {slug:'02-anatomi-prompt',title:{id:'Anatomi Prompt',en:'Anatomy of a Prompt'}},
@@ -306,10 +328,7 @@ const CURRICULUM = [
 ]}
 ];
 
-// ============ LESSON CONTENT ============
-// Tambah konten pelajaran di sini. Key = "level-X/slug"
-// Format HTML (bukan markdown). Gunakan <div class="prompt-block">...</div> untuk kotak prompt.
-const LESSONS = {
+const LESSONS={
 'level-1/01-apa-itu-ai':{
 id:`<h1>Apa Itu AI &amp; LLM?</h1>
 <p>Sebelum bisa menyuruh AI melakukan apapun, kamu harus kenalan dulu sama dia.</p>
@@ -330,8 +349,7 @@ id:`<h1>Apa Itu AI &amp; LLM?</h1>
 <p><strong>Kecuali kamu kasih tau.</strong></p>
 <p>Semakin banyak konteks yang relevan, semakin bagus hasilnya.</p>
 <h3>3. AI Butuh Struktur</h3>
-<p>Prompt berantakan = hasil berantakan.</p>
-<p>Prompt terstruktur = hasil terstruktur.</p>
+<p>Prompt berantakan = hasil berantakan. Prompt terstruktur = hasil terstruktur.</p>
 <p>Contoh prompt jelek:</p>
 <pre><code>bikin artikel</code></pre>
 <p>Contoh prompt bagus:</p>
@@ -511,20 +529,19 @@ Give the result directly, no extra explanation.</div></div>
 }
 };
 
-// ============ STATE ============
-const store = {
+const store={
 get(k,d){try{const v=localStorage.getItem('gs.'+k);return v?JSON.parse(v):d}catch{return d}},
 set(k,v){try{localStorage.setItem('gs.'+k,JSON.stringify(v))}catch{}}
 };
-let state = {
-theme: store.get('theme','dark'),
-lang: store.get('lang','id'),
-progress: store.get('progress',{completed:{}}),
-quizState: {}
+let state={
+theme:store.get('theme','dark'),
+lang:store.get('lang','id'),
+progress:store.get('progress',{completed:{}}),
+quizState:{}
 };
+let lastRenderedHash=null;
 function save(){store.set('theme',state.theme);store.set('lang',state.lang);store.set('progress',state.progress)}
 
-// ============ HELPERS ============
 function t(k){const path=k.split('.');let v=I18N[state.lang];for(const p of path){v=v?.[p]}return v||k}
 function isDone(l,s){return !!state.progress.completed[l+'/'+s]}
 function markDone(l,s){state.progress.completed[l+'/'+s]=true;save()}
@@ -532,16 +549,86 @@ function unmarkDone(l,s){delete state.progress.completed[l+'/'+s];save()}
 function levelProg(lvl){const total=lvl.lessons.length;const done=lvl.lessons.filter(x=>isDone(lvl.id,x.slug)).length;return{done,total,percent:total?done/total*100:0}}
 function totalLessons(){return CURRICULUM.reduce((s,l)=>s+l.lessons.length,0)}
 function totalDone(){return Object.keys(state.progress.completed).length}
-function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+
+// ============ Scroll Reveal ============
+function setupReveal(){
+const els=document.querySelectorAll('.reveal');
+if(!els.length)return;
+if(!('IntersectionObserver' in window)){els.forEach(el=>el.classList.add('visible'));return}
+const observer=new IntersectionObserver((entries)=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}
+});
+},{threshold:.1,rootMargin:'0px 0px -60px 0px'});
+els.forEach(el=>observer.observe(el));
+}
+
+// ============ Scroll Progress ============
+function updateScrollProgress(){
+const bar=document.querySelector('.scroll-progress');
+if(!bar)return;
+const doc=document.documentElement;
+const max=doc.scrollHeight-doc.clientHeight;
+const progress=max>0?Math.min(1,window.scrollY/max):0;
+bar.style.transform=`scaleX(${progress})`;
+}
+
+function updateHeaderState(){
+const header=document.querySelector('header');
+if(!header)return;
+if(window.scrollY>12)header.classList.add('scrolled');
+else header.classList.remove('scrolled');
+}
+
+function updateHeroParallax(){
+const hero=document.querySelector('.hero');
+if(!hero)return;
+const y=window.scrollY;
+if(y>window.innerHeight)return;
+const h1=hero.querySelector('h1');
+const sub=hero.querySelector('.hero-sub');
+const stack=hero.querySelector('.stack');
+if(h1)h1.style.transform=`translate3d(0,${y*.12}px,0)`;
+if(sub)sub.style.transform=`translate3d(0,${y*.06}px,0)`;
+if(stack)stack.style.transform=`translate3d(0,${y*-.08}px,0)`;
+}
+
 window.copyPrompt=function(btn){
-  const body=btn.closest('.prompt-block').querySelector('.prompt-body');
-  navigator.clipboard.writeText(body.textContent).then(()=>{
-    const orig=btn.textContent;btn.textContent=t('lesson.copied');
-    setTimeout(()=>btn.textContent=orig,1500);
-  });
+const body=btn.closest('.prompt-block').querySelector('.prompt-body');
+navigator.clipboard.writeText(body.textContent).then(()=>{
+const orig=btn.textContent;btn.textContent=t('lesson.copied');
+setTimeout(()=>btn.textContent=orig,1500);
+});
 };
 
-// ============ QUIZ DATA ============
+window.scrollToSection=function(id){
+const el=document.getElementById(id);
+if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
+};
+
+window.copyPlayground=function(btn){
+const area=document.getElementById('pgArea');
+if(!area||!area.value.trim())return;
+navigator.clipboard.writeText(area.value).then(()=>{
+const orig=btn.textContent;btn.textContent=t('lesson.copied');
+setTimeout(()=>btn.textContent=orig,1500);
+});
+};
+
+window.clearPlayground=function(){
+const area=document.getElementById('pgArea');
+if(area){area.value='';const cnt=document.getElementById('pgCount');if(cnt)cnt.textContent='0 karakter';area.focus()}
+};
+
+let ticking=false;
+function onScroll(){
+if(!ticking){
+requestAnimationFrame(()=>{updateScrollProgress();updateHeaderState();updateHeroParallax();ticking=false});
+ticking=true;
+}
+}
+window.addEventListener('scroll',onScroll,{passive:true});
+
 const QUIZ={
 'level-1/01-apa-itu-ai':[
 {q:{id:'Apa yang dimaksud dengan "halusinasi" pada AI?',en:'What does "hallucination" mean in AI?'},
@@ -557,223 +644,242 @@ o:{id:['Task','Role','Format','Output'],en:['Task','Role','Format','Output']},c:
 ]
 };
 
-// ============ RENDER ============
 function renderNav(){
-  const routes=[['#/','home'],['#/kurikulum','curriculum'],['#/progress','progress'],['#/tentang','about']];
-  const current=location.hash||'#/';
-  document.getElementById('nav').innerHTML=routes.map(([h,k])=>{
-    const on=(current===h||(h!=='#/'&&current.startsWith(h)))?'on':'';
-    return `<a href="${h}" class="${on}">${t('nav.'+k)}</a>`;
-  }).join('');
+const routes=[['#/','home'],['#/kurikulum','curriculum'],['#/progress','progress'],['#/tentang','about']];
+const current=location.hash||'#/';
+document.getElementById('nav').innerHTML=routes.map(([h,k])=>{
+const on=(current===h||(h!=='#/'&&current.startsWith(h)))?'on':'';
+return `<a href="${h}" class="${on}">${t('nav.'+k)}</a>`;
+}).join('');
 }
 function renderHeader(){
-  document.querySelector('[data-i="brand"]').textContent=t('brand');
-  document.getElementById('langBtn').textContent=state.lang==='id'?'🇮🇩':'🇬🇧';
-  document.getElementById('themeBtn').textContent=state.theme==='dark'?'☀️':'🌙';
-  document.querySelectorAll('[data-i="madeWith"]').forEach(el=>el.textContent=t('madeWith'));
+document.querySelector('[data-i="brand"]').textContent=t('brand');
+document.getElementById('langBtn').textContent=state.lang==='id'?'🇮🇩':'🇬🇧';
+document.getElementById('themeBtn').textContent=state.theme==='dark'?'☀️':'🌙';
+document.querySelectorAll('[data-i="madeWith"]').forEach(el=>el.textContent=t('madeWith'));
 }
 function renderHome(){
-  const total=totalLessons();
-  return `
-  <section class="hero">
-    <div class="badge"><span class="badge-dot"></span>${t('hero.badge')}</div>
-    <h1>${t('hero.title1')}<br><em>${t('hero.title2')}</em></h1>
-    <p class="hero-sub">${t('hero.sub')}</p>
-    <div class="hero-cta">
-      <a href="#/kurikulum/level-1/01-apa-itu-ai" class="btn btn-p">${t('hero.ctaPrimary')} →</a>
-      <a href="#kurikulum" class="btn btn-g">${t('hero.ctaSecondary')}</a>
-    </div>
-    <div class="stack">
-      <div class="stack-card"><div class="stack-label">Level 03 · Advanced</div><div class="stack-title">Chain of Thought</div><div class="stack-meta"><span>ReAct · ToT</span><span>12 min</span></div></div>
-      <div class="stack-card"><div class="stack-label">Level 02 · Intermediate</div><div class="stack-title">Few-Shot Prompting</div><div class="stack-meta"><span>Role · Format</span><span>8 min</span></div></div>
-      <div class="stack-card"><div class="stack-label">${state.lang==='id'?'Level 01 · Pemula':'Level 01 · Beginner'}</div><div class="stack-title">${state.lang==='id'?'Anatomi Prompt':'Anatomy of a Prompt'}</div><div class="stack-meta"><span>${state.lang==='id'?'Mulai dari sini':'Start here'}</span><span>5 min</span></div></div>
-    </div>
-    <div class="stats">
-      <div class="stat"><div class="stat-val">5</div><div class="stat-lbl">${t('stats.levels')}</div></div>
-      <div class="stat"><div class="stat-val">${total}</div><div class="stat-lbl">${t('stats.lessons')}</div></div>
-      <div class="stat"><div class="stat-val">100%</div><div class="stat-lbl">${t('stats.free')}</div></div>
-    </div>
-  </section>
-  <section class="section" id="kurikulum">
-    <div class="container">
-      <div class="sec-head">
-        <div class="sec-eye">${t('curriculum.eyebrow')}</div>
-        <h2 class="sec-title">${t('curriculum.title')}</h2>
-        <p class="sec-sub">${t('curriculum.sub')}</p>
-      </div>
-      <div class="levels">
-        ${CURRICULUM.map(l=>{const p=levelProg(l);return `
-          <a href="#/kurikulum/${l.id}" class="lvl">
-            <div class="lvl-num">LEVEL ${l.num}</div>
-            <h3 class="lvl-title">${l.title[state.lang]}</h3>
-            <p class="lvl-desc">${l.desc[state.lang]}</p>
-            <div class="lvl-prog"><div class="bar"><div class="bar-fill" style="width:${p.percent}%"></div></div><span class="bar-txt">${p.done}/${p.total}</span></div>
-          </a>`}).join('')}
-      </div>
-    </div>
-  </section>`;
+const total=totalLessons();
+return `
+<section class="hero">
+<div class="badge"><span class="badge-dot"></span>${t('hero.badge')}</div>
+<h1>${t('hero.title1')}<br><em>${t('hero.title2')}</em></h1>
+<p class="hero-sub">${t('hero.sub')}</p>
+<div class="hero-cta">
+<a href="#/kurikulum/level-1/01-apa-itu-ai" class="btn btn-p">${t('hero.ctaPrimary')} →</a>
+<button class="btn btn-g" onclick="scrollToSection('kurikulum')">${t('hero.ctaSecondary')}</button>
+</div>
+<div class="stack">
+<div class="stack-card"><div class="stack-label">Level 03 · Advanced</div><div class="stack-title">Chain of Thought</div><div class="stack-meta"><span>ReAct · ToT</span><span>12 min</span></div></div>
+<div class="stack-card"><div class="stack-label">Level 02 · Intermediate</div><div class="stack-title">Few-Shot Prompting</div><div class="stack-meta"><span>Role · Format</span><span>8 min</span></div></div>
+<div class="stack-card"><div class="stack-label">${state.lang==='id'?'Level 01 · Pemula':'Level 01 · Beginner'}</div><div class="stack-title">${state.lang==='id'?'Anatomi Prompt':'Anatomy of a Prompt'}</div><div class="stack-meta"><span>${state.lang==='id'?'Mulai dari sini':'Start here'}</span><span>5 min</span></div></div>
+</div>
+<div class="stats">
+<div class="stat reveal"><div class="stat-val">5</div><div class="stat-lbl">${t('stats.levels')}</div></div>
+<div class="stat reveal"><div class="stat-val">${total}</div><div class="stat-lbl">${t('stats.lessons')}</div></div>
+<div class="stat reveal"><div class="stat-val">100%</div><div class="stat-lbl">${t('stats.free')}</div></div>
+</div>
+</section>
+<section class="section" id="kurikulum">
+<div class="container">
+<div class="sec-head reveal">
+<div class="sec-eye">${t('curriculum.eyebrow')}</div>
+<h2 class="sec-title">${t('curriculum.title')}</h2>
+<p class="sec-sub">${t('curriculum.sub')}</p>
+</div>
+<div class="levels">
+${CURRICULUM.map(l=>{const p=levelProg(l);return `
+<a href="#/kurikulum/${l.id}" class="lvl reveal">
+<div class="lvl-num">LEVEL ${l.num}</div>
+<h3 class="lvl-title">${l.title[state.lang]}</h3>
+<p class="lvl-desc">${l.desc[state.lang]}</p>
+<div class="lvl-prog"><div class="bar"><div class="bar-fill" style="width:${p.percent}%"></div></div><span class="bar-txt">${p.done}/${p.total}</span></div>
+</a>`}).join('')}
+</div>
+</div>
+</section>`;
 }
 function renderLevel(id){
-  const lvl=CURRICULUM.find(l=>l.id===id);if(!lvl)return render404();
-  const p=levelProg(lvl);
-  return `<div class="lesson">
-    <div class="crumb"><a href="#/">${t('nav.home')}</a><span>›</span><span>Level ${lvl.num}</span></div>
-    <h1>${lvl.title[state.lang]}</h1>
-    <p style="color:var(--fg-soft);font-size:1.1rem;margin-bottom:32px;max-width:600px">${lvl.desc[state.lang]}</p>
-    <div class="lvl-prog" style="margin-bottom:40px"><div class="bar"><div class="bar-fill" style="width:${p.percent}%"></div></div><span class="bar-txt">${p.done}/${p.total}</span></div>
-    <div class="lesson-list">
-      ${lvl.lessons.map((x,i)=>{const d=isDone(lvl.id,x.slug);return `<a href="#/kurikulum/${lvl.id}/${x.slug}" class="lesson-row">
-        <span class="lesson-num ${d?'done':''}">${d?'✓':String(i+1).padStart(2,'0')}</span>
-        <span class="lesson-tit">${x.title[state.lang]}</span>
-        <span class="lesson-arrow">→</span>
-      </a>`}).join('')}
-    </div>
-  </div>`;
+const lvl=CURRICULUM.find(l=>l.id===id);if(!lvl)return render404();
+const p=levelProg(lvl);
+return `<div class="lesson">
+<div class="crumb reveal"><a href="#/">${t('nav.home')}</a><span>›</span><span>Level ${lvl.num}</span></div>
+<h1 class="reveal">${lvl.title[state.lang]}</h1>
+<p class="reveal" style="color:var(--fg-soft);font-size:1.1rem;margin-bottom:32px;max-width:600px">${lvl.desc[state.lang]}</p>
+<div class="lvl-prog reveal" style="margin-bottom:40px"><div class="bar"><div class="bar-fill" style="width:${p.percent}%"></div></div><span class="bar-txt">${p.done}/${p.total}</span></div>
+<div class="lesson-list reveal">
+${lvl.lessons.map((x,i)=>{const d=isDone(lvl.id,x.slug);return `<a href="#/kurikulum/${lvl.id}/${x.slug}" class="lesson-row">
+<span class="lesson-num ${d?'done':''}">${d?'✓':String(i+1).padStart(2,'0')}</span>
+<span class="lesson-tit">${x.title[state.lang]}</span>
+<span class="lesson-arrow">→</span>
+</a>`}).join('')}
+</div>
+</div>`;
 }
 function renderLesson(lid,slug){
-  const lvl=CURRICULUM.find(l=>l.id===lid);if(!lvl)return render404();
-  const idx=lvl.lessons.findIndex(x=>x.slug===slug);if(idx<0)return render404();
-  const lesson=lvl.lessons[idx];
-  const prev=idx>0?lvl.lessons[idx-1]:null;
-  const next=idx<lvl.lessons.length-1?lvl.lessons[idx+1]:null;
-  const key=lid+'/'+slug;
-  const content=LESSONS[key]?.[state.lang]||LESSONS[key]?.id;
-  const quiz=QUIZ[key];
-  const done=isDone(lid,slug);
-  const fallback=!LESSONS[key]?.[state.lang]&&LESSONS[key]?.id;
-  return `<div class="lesson">
-    <div class="crumb"><a href="#/">${t('nav.home')}</a><span>›</span><a href="#/kurikulum/${lid}">Level ${lvl.num}</a><span>›</span><span>${lesson.title[state.lang]}</span></div>
-    <div class="lesson-meta"><span>${lvl.title[state.lang]}</span><span>·</span><span>${state.lang==='id'?'5 menit baca':'5 min read'}</span>${fallback?'<span>·</span><span style="color:var(--warning)">EN coming soon</span>':''}</div>
-    <div class="prose">${content||`<p style="color:var(--fg-soft);padding:40px 0">${t('comingSoon')}</p>`}</div>
-    ${content?`<div class="pg"><div class="pg-head"><span class="pg-dot"></span><span class="pg-title">${t('lesson.playground')}</span></div><textarea id="pgArea" placeholder="${t('lesson.playgroundHint')}"></textarea><div class="pg-actions"><span class="pg-hint" id="pgCount">0 karakter</span><div style="display:flex;gap:8px"><button class="btn btn-g btn-sm" onclick="document.getElementById('pgArea').value='';document.getElementById('pgCount').textContent='0 karakter'">Clear</button><button class="btn btn-p btn-sm" onclick="copyPrompt(this)">${t('lesson.copy')}</button></div></div></div>`:''}
-    ${content&&quiz?renderQuiz(key,quiz):''}
-    ${content?`<div class="complete"><h3>${done?t('lesson.completed'):(state.lang==='id'?'Sudah paham?':'Got it?')}</h3><p>${state.lang==='id'?'Tandai selesai untuk lanjut ke pelajaran berikutnya.':'Mark complete to move to the next lesson.'}</p><button class="btn ${done?'btn-g':'btn-p'}" id="completeBtn">${done?t('lesson.completed'):t('lesson.complete')}</button></div>`:''}
-    <nav class="nav-btns">
-      ${prev?`<a href="#/kurikulum/${lid}/${prev.slug}" class="nav-btn"><span class="nav-lbl">← ${t('lesson.prev')}</span><span class="nav-tit">${prev.title[state.lang]}</span></a>`:'<div></div>'}
-      ${next?`<a href="#/kurikulum/${lid}/${next.slug}" class="nav-btn next"><span class="nav-lbl">${t('lesson.next')} →</span><span class="nav-tit">${next.title[state.lang]}</span></a>`:'<div></div>'}
-    </nav>
-  </div>`;
+const lvl=CURRICULUM.find(l=>l.id===lid);if(!lvl)return render404();
+const idx=lvl.lessons.findIndex(x=>x.slug===slug);if(idx<0)return render404();
+const lesson=lvl.lessons[idx];
+const prev=idx>0?lvl.lessons[idx-1]:null;
+const next=idx<lvl.lessons.length-1?lvl.lessons[idx+1]:null;
+const key=lid+'/'+slug;
+const content=LESSONS[key]?.[state.lang]||LESSONS[key]?.id;
+const quiz=QUIZ[key];
+const done=isDone(lid,slug);
+const fallback=!LESSONS[key]?.[state.lang]&&LESSONS[key]?.id;
+return `<div class="lesson">
+<div class="crumb reveal"><a href="#/">${t('nav.home')}</a><span>›</span><a href="#/kurikulum/${lid}">Level ${lvl.num}</a><span>›</span><span>${lesson.title[state.lang]}</span></div>
+<h1 class="reveal">${lesson.title[state.lang]}</h1>
+<div class="lesson-meta reveal"><span>${lvl.title[state.lang]}</span><span>·</span><span>${state.lang==='id'?'5 menit baca':'5 min read'}</span>${fallback?'<span>·</span><span style="color:var(--warning)">EN coming soon</span>':''}</div>
+<div class="prose reveal">${content||`<p style="color:var(--fg-soft);padding:40px 0">${t('comingSoon')}</p>`}</div>
+${content?`<div class="pg reveal"><div class="pg-head"><span class="pg-dot"></span><span class="pg-title">${t('lesson.playground')}</span></div><textarea id="pgArea" placeholder="${t('lesson.playgroundHint')}"></textarea><div class="pg-actions"><span class="pg-hint" id="pgCount">0 karakter</span><div style="display:flex;gap:8px"><button class="btn btn-g btn-sm" onclick="clearPlayground()">Clear</button><button class="btn btn-p btn-sm" onclick="copyPlayground(this)">${t('lesson.copy')}</button></div></div></div>`:''}
+${content&&quiz?renderQuiz(key,quiz):''}
+${content?`<div class="complete reveal"><h3>${done?t('lesson.completed'):(state.lang==='id'?'Sudah paham?':'Got it?')}</h3><p>${state.lang==='id'?'Tandai selesai untuk lanjut ke pelajaran berikutnya.':'Mark complete to move to the next lesson.'}</p><button class="btn ${done?'btn-g':'btn-p'}" id="completeBtn">${done?t('lesson.completed'):t('lesson.complete')}</button></div>`:''}
+<nav class="nav-btns reveal">
+${prev?`<a href="#/kurikulum/${lid}/${prev.slug}" class="nav-btn"><span class="nav-lbl">← ${t('lesson.prev')}</span><span class="nav-tit">${prev.title[state.lang]}</span></a>`:'<div></div>'}
+${next?`<a href="#/kurikulum/${lid}/${next.slug}" class="nav-btn next"><span class="nav-lbl">${t('lesson.next')} →</span><span class="nav-tit">${next.title[state.lang]}</span></a>`:'<div></div>'}
+</nav>
+</div>`;
 }
 function renderQuiz(key,questions){
-  const qs=state.quizState[key]||{i:0,sel:null,score:0,done:false};
-  state.quizState[key]=qs;
-  if(qs.done){
-    const p=Math.round(qs.score/questions.length*100);
-    return `<div class="quiz"><div class="quiz-head"><span class="quiz-label">${t('quiz.finish')}</span></div><div style="text-align:center;padding:20px 0"><div style="font-size:2.5rem;font-weight:700;letter-spacing:-.04em;margin-bottom:8px;color:var(--fg)">${qs.score}/${questions.length}</div><p style="color:var(--fg-soft);font-size:15px">${p===100?'🎉 '+t('quiz.correct'):p>=60?'👍':'📚'}</p><button class="btn btn-g btn-sm" style="margin-top:20px" onclick="resetQuiz('${key}')">↺</button></div></div>`;
-  }
-  const q=questions[qs.i];
-  const qText=q.q[state.lang],opts=q.o[state.lang];
-  return `<div class="quiz"><div class="quiz-head"><span class="quiz-label">${t('quiz.label')}</span><span class="quiz-count">${qs.i+1}/${questions.length}</span></div><div class="quiz-q">${qText}</div><div class="quiz-opts">${opts.map((o,i)=>{let c='quiz-opt';if(qs.sel!==null){if(i===q.c)c+=' right';else if(i===qs.sel)c+=' wrong'}return `<button class="${c}" onclick="answerQuiz('${key}',${i},${q.c},${questions.length})"><span class="quiz-marker">${String.fromCharCode(65+i)}</span><span>${o}</span></button>`}).join('')}</div>${qs.sel!==null?`<div class="quiz-footer"><span class="quiz-fb ${qs.sel===q.c?'ok':'no'}">${qs.sel===q.c?t('quiz.correct'):t('quiz.wrong')}</span><button class="btn btn-p btn-sm" onclick="nextQuiz('${key}',${questions.length})">${qs.i===questions.length-1?t('quiz.finish'):t('quiz.next')}</button></div>`:''}</div>`;
+const qs=state.quizState[key]||{i:0,sel:null,score:0,done:false};
+state.quizState[key]=qs;
+if(qs.done){
+const p=Math.round(qs.score/questions.length*100);
+return `<div class="quiz reveal"><div class="quiz-head"><span class="quiz-label">${t('quiz.finish')}</span></div><div style="text-align:center;padding:20px 0"><div style="font-size:2.5rem;font-weight:700;letter-spacing:-.04em;margin-bottom:8px;color:var(--fg)">${qs.score}/${questions.length}</div><p style="color:var(--fg-soft);font-size:15px">${p===100?'🎉 '+t('quiz.correct'):p>=60?'👍':'📚'}</p><button class="btn btn-g btn-sm" style="margin-top:20px" onclick="resetQuiz('${key}')">↺</button></div></div>`;
+}
+const q=questions[qs.i];
+const qText=q.q[state.lang],opts=q.o[state.lang];
+return `<div class="quiz reveal"><div class="quiz-head"><span class="quiz-label">${t('quiz.label')}</span><span class="quiz-count">${qs.i+1}/${questions.length}</span></div><div class="quiz-q">${qText}</div><div class="quiz-opts">${opts.map((o,i)=>{let c='quiz-opt';if(qs.sel!==null){if(i===q.c)c+=' right';else if(i===qs.sel)c+=' wrong'}return `<button class="${c}" onclick="answerQuiz('${key}',${i},${q.c},${questions.length})"><span class="quiz-marker">${String.fromCharCode(65+i)}</span><span>${o}</span></button>`}).join('')}</div>${qs.sel!==null?`<div class="quiz-footer"><span class="quiz-fb ${qs.sel===q.c?'ok':'no'}">${qs.sel===q.c?t('quiz.correct'):t('quiz.wrong')}</span><button class="btn btn-p btn-sm" onclick="nextQuiz('${key}',${questions.length})">${qs.i===questions.length-1?t('quiz.finish'):t('quiz.next')}</button></div>`:''}</div>`;
 }
 window.answerQuiz=function(key,i,c,total){
-  const qs=state.quizState[key];if(!qs||qs.sel!==null)return;
-  qs.sel=i;if(i===c)qs.score++;render();
+const qs=state.quizState[key];if(!qs||qs.sel!==null)return;
+qs.sel=i;if(i===c)qs.score++;render();
 };
 window.nextQuiz=function(key,total){
-  const qs=state.quizState[key];
-  if(qs.i===total-1){qs.done=true}else{qs.i++;qs.sel=null}
-  render();
+const qs=state.quizState[key];
+if(qs.i===total-1){qs.done=true}else{qs.i++;qs.sel=null}
+render();
 };
 window.resetQuiz=function(key){state.quizState[key]={i:0,sel:null,score:0,done:false};render()};
 function renderProgress(){
-  const total=totalLessons(),done=totalDone();
-  const percent=total?done/total*100:0;
-  const r=45,circ=2*Math.PI*r,dash=percent/100*circ;
-  return `<div class="lesson">
-    <h1>${t('progress.title')}</h1>
-    <p style="color:var(--fg-soft);margin-bottom:40px;max-width:600px">${t('progress.sub')}</p>
-    <div class="stat-row">
-      <div class="ring"><svg width="100" height="100"><circle cx="50" cy="50" r="${r}" fill="none" stroke="var(--border)" stroke-width="8"/><circle cx="50" cy="50" r="${r}" fill="none" stroke="var(--accent)" stroke-width="8" stroke-linecap="round" stroke-dasharray="${dash} ${circ}" style="transition:stroke-dasharray .6s var(--ease)"/></svg><div class="ring-val">${Math.round(percent)}%</div></div>
-      <div><div style="font-size:28px;font-weight:700;letter-spacing:-.03em;color:var(--fg)">${done} / ${total}</div><div style="color:var(--fg-soft);font-size:14px;margin-top:4px">${t('progress.completed')}</div></div>
-    </div>
-    <h2 style="font-size:1.1rem;margin-bottom:16px;font-weight:600;color:var(--fg)">Level</h2>
-    <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:40px">
-      ${CURRICULUM.map(l=>{const p=levelProg(l);return `<div style="display:flex;align-items:center;gap:16px;padding:14px 18px;border-radius:14px;background:var(--card);border:1px solid var(--border)"><span style="font-family:var(--mono);font-size:12px;color:var(--fg-muted);min-width:24px">${l.num}</span><span style="flex:1;font-weight:500;font-size:14px;color:var(--fg)">${l.title[state.lang]}</span><div class="bar" style="width:100px"><div class="bar-fill" style="width:${p.percent}%"></div></div><span style="font-size:12px;color:var(--fg-muted);min-width:36px;text-align:right;font-variant-numeric:tabular-nums">${p.done}/${p.total}</span></div>`}).join('')}
-    </div>
-    <button class="btn btn-g" id="resetBtn" style="color:var(--danger)">${t('progress.reset')}</button>
-  </div>`;
+const total=totalLessons(),done=totalDone();
+const percent=total?done/total*100:0;
+const r=45,circ=2*Math.PI*r,dash=percent/100*circ;
+return `<div class="lesson">
+<h1 class="reveal">${t('progress.title')}</h1>
+<p class="reveal" style="color:var(--fg-soft);margin-bottom:40px;max-width:600px">${t('progress.sub')}</p>
+<div class="stat-row reveal">
+<div class="ring"><svg width="100" height="100"><circle cx="50" cy="50" r="${r}" fill="none" stroke="var(--border)" stroke-width="8"/><circle cx="50" cy="50" r="${r}" fill="none" stroke="var(--accent)" stroke-width="8" stroke-linecap="round" stroke-dasharray="${dash} ${circ}" style="transition:stroke-dasharray .6s var(--ease)"/></svg><div class="ring-val">${Math.round(percent)}%</div></div>
+<div><div style="font-size:28px;font-weight:700;letter-spacing:-.03em;color:var(--fg)">${done} / ${total}</div><div style="color:var(--fg-soft);font-size:14px;margin-top:4px">${t('progress.completed')}</div></div>
+</div>
+<h2 class="reveal" style="font-size:1.1rem;margin-bottom:16px;font-weight:600;color:var(--fg)">Level</h2>
+<div class="reveal" style="display:flex;flex-direction:column;gap:10px;margin-bottom:40px">
+${CURRICULUM.map(l=>{const p=levelProg(l);return `<div style="display:flex;align-items:center;gap:16px;padding:14px 18px;border-radius:14px;background:var(--card);border:1px solid var(--border)"><span style="font-family:var(--mono);font-size:12px;color:var(--fg-muted);min-width:24px">${l.num}</span><span style="flex:1;font-weight:500;font-size:14px;color:var(--fg)">${l.title[state.lang]}</span><div class="bar" style="width:100px"><div class="bar-fill" style="width:${p.percent}%"></div></div><span style="font-size:12px;color:var(--fg-muted);min-width:36px;text-align:right;font-variant-numeric:tabular-nums">${p.done}/${p.total}</span></div>`}).join('')}
+</div>
+<button class="btn btn-g reveal" id="resetBtn" style="color:var(--danger)">${t('progress.reset')}</button>
+</div>`;
 }
 function renderAbout(){
-  return `<div class="lesson">
-    <h1 style="text-align:center;margin-bottom:32px">${t('about.title')}</h1>
-    <div class="prose">${t('about.body')}</div>
-  </div>`;
+return `<div class="lesson">
+<h1 class="reveal" style="text-align:center;margin-bottom:32px">${t('about.title')}</h1>
+<div class="prose reveal">${t('about.body')}</div>
+</div>`;
 }
 function render404(){
-  return `<div class="container" style="padding:120px 24px;text-align:center">
-    <div style="font-size:5rem;font-weight:700;letter-spacing:-.05em;background:linear-gradient(180deg,var(--fg),var(--fg-muted));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">404</div>
-    <p style="color:var(--fg-soft);margin:16px 0 32px">${t('notFound')}</p>
-    <a href="#/" class="btn btn-p">${t('backHome')}</a>
-  </div>`;
+return `<div class="container" style="padding:120px 24px;text-align:center">
+<div style="font-size:5rem;font-weight:700;letter-spacing:-.05em;background:linear-gradient(180deg,var(--fg),var(--fg-muted));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">404</div>
+<p style="color:var(--fg-soft);margin:16px 0 32px">${t('notFound')}</p>
+<a href="#/" class="btn btn-p">${t('backHome')}</a>
+</div>`;
 }
 
-// ============ ROUTER ============
 function render(){
-  document.documentElement.setAttribute('data-theme',state.theme);
-  document.documentElement.setAttribute('lang',state.lang);
-  renderHeader();renderNav();
-  const hash=location.hash.replace(/^#/,'')||'/';
-  const parts=hash.split('/').filter(Boolean);
-  const main=document.getElementById('main');
-  let html='';
-  if(parts.length===0)html=renderHome();
-  else if(parts[0]==='kurikulum'){
-    if(parts.length===1)html=renderHome();
-    else if(parts.length===2)html=renderLevel(parts[1]);
-    else if(parts.length===3)html=renderLesson(parts[1],parts[2]);
-    else html=render404();
-  }
-  else if(parts[0]==='progress')html=renderProgress();
-  else if(parts[0]==='tentang')html=renderAbout();
-  else html=render404();
-  main.innerHTML=html;
-  // handlers khusus
-  const pgArea=document.getElementById('pgArea');
-  if(pgArea){pgArea.addEventListener('input',()=>{document.getElementById('pgCount').textContent=pgArea.value.length+' karakter'})}
-  const cb=document.getElementById('completeBtn');
-  if(cb){
-    const hashParts=location.hash.replace(/^#/,'').split('/').filter(Boolean);
-    if(hashParts.length===3){
-      const [_,lid,slug]=hashParts;
-      cb.addEventListener('click',()=>{
-        if(isDone(lid,slug))unmarkDone(lid,slug);
-        else{markDone(lid,slug);confetti();}
-        render();
-      });
-    }
-  }
-  const rb=document.getElementById('resetBtn');
-  if(rb){rb.addEventListener('click',()=>{if(confirm(t('progress.resetConfirm'))){state.progress={completed:{}};save();render();}})}
-  // smooth scroll untuk anchor internal
-  document.querySelectorAll('a[href^="#kurikulum"]').forEach(a=>{
-    a.addEventListener('click',e=>{e.preventDefault();document.getElementById('kurikulum')?.scrollIntoView({behavior:'smooth'})});
-  });
-  window.scrollTo({top:0,behavior:'instant'});
+document.documentElement.setAttribute('data-theme',state.theme);
+document.documentElement.setAttribute('lang',state.lang);
+renderHeader();renderNav();
+const hash=location.hash.replace(/^#/,'')||'/';
+const parts=hash.split('/').filter(Boolean);
+const main=document.getElementById('main');
+let html='';
+if(parts.length===0)html=renderHome();
+else if(parts[0]==='kurikulum'){
+if(parts.length===1)html=renderHome();
+else if(parts.length===2)html=renderLevel(parts[1]);
+else if(parts.length===3)html=renderLesson(parts[1],parts[2]);
+else html=render404();
+}
+else if(parts[0]==='progress')html=renderProgress();
+else if(parts[0]==='tentang')html=renderAbout();
+else html=render404();
+main.innerHTML=html;
+const pgArea=document.getElementById('pgArea');
+if(pgArea){pgArea.addEventListener('input',()=>{document.getElementById('pgCount').textContent=pgArea.value.length+' karakter'})}
+const cb=document.getElementById('completeBtn');
+if(cb){
+const hashParts=location.hash.replace(/^#/,'').split('/').filter(Boolean);
+if(hashParts.length===3){
+const[lid,slug]=[hashParts[1],hashParts[2]];
+cb.addEventListener('click',()=>{
+if(isDone(lid,slug))unmarkDone(lid,slug);
+else{markDone(lid,slug);confetti();}
+render();
+});
+}
+}
+const rb=document.getElementById('resetBtn');
+if(rb){rb.addEventListener('click',()=>{if(confirm(t('progress.resetConfirm'))){state.progress={completed:{}};save();render();}})}
+
+const currentHash=location.hash||'#/';
+const isNewRoute=currentHash!==lastRenderedHash;
+lastRenderedHash=currentHash;
+
+if(isNewRoute&&currentHash!=='#/kurikulum'){
+window.scrollTo(0,0);
 }
 
-// ============ CONFETTI ============
+if(isNewRoute){
+setupReveal();
+}else{
+requestAnimationFrame(()=>{
+document.querySelectorAll('.reveal').forEach(el=>el.classList.add('visible'));
+});
+}
+
+requestAnimationFrame(()=>{
+updateScrollProgress();
+updateHeaderState();
+});
+}
+
 function confetti(){
-  const c=document.createElement('div');c.className='confetti';document.body.appendChild(c);
-  const colors=['#fff','#a0a0a0','#ffd60a','#30d158','#5e9eff'];
-  for(let i=0;i<40;i++){
-    const p=document.createElement('div');p.className='cf';
-    p.style.left=Math.random()*100+'%';
-    p.style.background=colors[Math.floor(Math.random()*colors.length)];
-    p.style.width=(6+Math.random()*8)+'px';
-    p.style.height=p.style.width;
-    p.style.animationDelay=(Math.random()*.3)+'s';
-    p.style.animationDuration=(2+Math.random()*1.5)+'s';
-    c.appendChild(p);
-  }
-  setTimeout(()=>c.remove(),3500);
+const c=document.createElement('div');c.className='confetti';document.body.appendChild(c);
+const colors=['#fff','#a0a0a0','#ffd60a','#30d158','#5e9eff'];
+for(let i=0;i<40;i++){
+const p=document.createElement('div');p.className='cf';
+p.style.left=Math.random()*100+'%';
+p.style.background=colors[Math.floor(Math.random()*colors.length)];
+p.style.width=(6+Math.random()*8)+'px';
+p.style.height=p.style.width;
+p.style.animationDelay=(Math.random()*.3)+'s';
+p.style.animationDuration=(2+Math.random()*1.5)+'s';
+c.appendChild(p);
+}
+setTimeout(()=>c.remove(),3500);
 }
 
-// ============ EVENTS ============
 document.getElementById('langBtn').addEventListener('click',()=>{state.lang=state.lang==='id'?'en':'id';save();render()});
 document.getElementById('themeBtn').addEventListener('click',()=>{state.theme=state.theme==='dark'?'light':'dark';save();render()});
-window.addEventListener('hashchange',render);
+window.addEventListener('hashchange',()=>{
+render();
+if(location.hash==='#/kurikulum'){
+setTimeout(()=>{
+const el=document.getElementById('kurikulum');
+if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
+},120);
+}
+});
 
-// ============ INIT ============
 render();
 </script>
 </body>
