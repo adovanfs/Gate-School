@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" fill="none">
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+<stop offset="0%" stop-color="#000000"/>
+<stop offset="100%" stop-color="#1a1a1a"/>
+</linearGradient>
+<linearGradient id="text" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0%" stop-color="#ffffff"/>
+<stop offset="100%" stop-color="#888888"/>
+</linearGradient>
+<radialGradient id="glow1" cx="20%" cy="20%">
+<stop offset="0%" stop-color="#7850ff" stop-opacity="0.4"/>
+<stop offset="100%" stop-color="#7850ff" stop-opacity="0"/>
+</radialGradient>
+<radialGradient id="glow2" cx="80%" cy="80%">
+<stop offset="0%" stop-color="#50c8ff" stop-opacity="0.3"/>
+<stop offset="100%" stop-color="#50c8ff" stop-opacity="0"/>
+</radialGradient>
+</defs>
+<rect width="1200" height="630" fill="url(#bg)"/>
+<rect width="1200" height="630" fill="url(#glow1)"/>
+<rect width="1200" height="630" fill="url(#glow2)"/>
+<g transform="translate(80 80)">
+<rect width="80" height="80" rx="20" fill="#ffffff" opacity="0.08"/>
+<path d="M22 22 L22 58 L40 58 L40 46 L34 46 L34 40 L44 40 L44 58 L58 58 L58 22 L22 22 Z M34 34 L46 34 L46 40 L34 40 L34 34 Z" fill="#ffffff"/>
+</g>
+<text x="180" y="120" font-family="system-ui, -apple-system, sans-serif" font-size="28" font-weight="600" fill="#a0a0a0" letter-spacing="-0.02em">Gate School</text>
+<text x="80" y="290" font-family="system-ui, -apple-system, sans-serif" font-size="92" font-weight="700" fill="url(#text)" letter-spacing="-0.045em">Kuasai seni</text>
+<text x="80" y="390" font-family="Georgia, serif" font-size="92" font-style="italic" font-weight="400" fill="url(#text)" letter-spacing="-0.02em">berbicara dengan AI.</text>
+<text x="80" y="480" font-family="system-ui, -apple-system, sans-serif" font-size="26" font-weight="400" fill="#a1a1a6" letter-spacing="-0.01em">Sekolah Prompt AI bilingual · Dari nol sampai master · Gratis</text>
+<g transform="translate(80 540)">
+<rect width="220" height="56" rx="28" fill="#ffffff"/>
+<text x="110" y="36" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="600" fill="#000000" text-anchor="middle">Mulai Belajar →</text>
+</g>
+<g transform="translate(920 540)">
+<text font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="600" fill="#6e6e73" letter-spacing="0.08em">GATE-SCHOOL</text>
+</g>
+</svg>
