@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#000000">
+<title>Extras — Gate School</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='112' fill='%23000'/%3E%3Cpath d='M140 140 L140 372 L256 372 L256 300 L216 300 L216 268 L280 268 L280 372 L372 372 L372 140 L140 140 Z M216 216 L296 216 L296 244 L216 244 L216 216 Z' fill='%23fff'/%3E%3C/svg%3E">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{
+--bg:#000;--bg-soft:#0a0a0a;--bg-elev:#141414;--card:rgba(255,255,255,.03);--card-h:rgba(255,255,255,.06);
+--fg:#f5f5f7;--fg-soft:#a1a1a6;--fg-muted:#6e6e73;--border:rgba(255,255,255,.08);--border-s:rgba(255,255,255,.16);
+--accent:#fff;--accent-fg:#000;--glow:rgba(255,255,255,.2);
+--success:#30d158;--warning:#ffd60a;--danger:#ff453a;--info:#0a84ff;
+--font:-apple-system,BlinkMacSystemFont,'SF Pro Display','Inter','Segoe UI',system-ui,sans-serif;
+--serif:'New York','Playfair Display',Georgia,serif;
+--mono:'SF Mono','JetBrains Mono',Menlo,Consolas,monospace;
+--ease:cubic-bezier(.16,1,.3,1);--spring:cubic-bezier(.34,1.56,.64,1);
+}
+[data-theme=light]{
+--bg:#fafafa;--bg-soft:#f5f5f7;--bg-elev:#fff;--card:rgba(0,0,0,.02);--card-h:rgba(0,0,0,.05);
+--fg:#1d1d1f;--fg-soft:#6e6e73;--fg-muted:#a1a1a6;--border:rgba(0,0,0,.08);--border-s:rgba(0,0,0,.16);
+--accent:#000;--accent-fg:#fff;--glow:rgba(0,0,0,.15);
+}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--fg);font-family:var(--font);font-size:16px;line-height:1.6;letter-spacing:-.01em;-webkit-font-smoothing:antialiased;overflow-x:hidden;transition:background .3s var(--ease),color .3s var(--ease);min-height:100vh;display:flex;flex-direction:column}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;opacity:.025;z-index:1;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E")}
+button,input,textarea,select{font-family:inherit;font-size:inherit;color:inherit}
+button{cursor:pointer;border:none;background:none}
+a{color:inherit;text-decoration:none}
+.bg-3d{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.orb{position:absolute;border-radius:50%;filter:blur(80px);opacity:.5;animation:float 20s ease-in-out infinite}
+.orb1{width:500px;height:500px;background:radial-gradient(circle,rgba(120,80,255,.35),transparent 70%);top:-200px;left:-100px}
+.orb2{width:400px;height:400px;background:radial-gradient(circle,rgba(80,200,255,.25),transparent 70%);bottom:-150px;right:-100px;animation-delay:-7s}
+.orb3{width:350px;height:350px;background:radial-gradient(circle,rgba(255,100,150,.2),transparent 70%);top:40%;right:20%;animation-delay:-14s}
+[data-theme=light] .orb{opacity:.35}
+@keyframes float{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(60px,-40px) scale(1.1)}66%{transform:translate(-40px,60px) scale(.95)}}
+header{position:sticky;top:0;z-index:50;backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);background:rgba(0,0,0,.72);border-bottom:1px solid var(--border)}
+[data-theme=light] header{background:rgba(250,250,250,.72)}
+.hd-in{display:flex;align-items:center;justify-content:space-between;height:60px;padding:0 20px;max-width:1080px;margin:0 auto}
+.brand{display:flex;align-items:center;gap:10px;font-weight:600;font-size:15px;letter-spacing:-.02em}
+.brand-logo{width:28px;height:28px;transition:transform .5s var(--spring)}
+.brand:hover .brand-logo{transform:rotateY(180deg)}
+.hd-actions{display:flex;gap:6px}
+.icon-btn{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--fg-soft);transition:all .2s var(--ease);font-size:15px}
+.icon-btn:hover{background:var(--card-h);color:var(--fg);transform:translateY(-1px)}
+.icon-btn:active{transform:scale(.94)}
+main{flex:1;position:relative;z-index:2}
+.container{width:100%;max-width:1080px;margin:0 auto;padding:0 24px}
+.page{padding:48px 24px 80px;max-width:1080px;margin:0 auto;animation:fade .4s var(--ease) both}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+h1{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:700;letter-spacing:-.035em;line-height:1.1;margin-bottom:16px}
+.page-sub{color:var(--fg-soft);margin-bottom:32px;max-width:640px;font-size:1.05rem}
+.tabs{display:flex;gap:8px;margin-bottom:32px;flex-wrap:wrap;border-bottom:1px solid var(--border);padding-bottom:0}
+.tab{padding:12px 20px;font-size:14.5px;font-weight:600;color:var(--fg-soft);border-bottom:2px solid transparent;margin-bottom:-1px;transition:all .2s var(--ease);letter-spacing:-.01em}
+.tab:hover{color:var(--fg)}
+.tab.on{color:var(--fg);border-bottom-color:var(--accent)}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 26px;border-radius:999px;font-size:15px;font-weight:600;letter-spacing:-.01em;transition:all .25s var(--ease);white-space:nowrap;cursor:pointer;border:1px solid transparent}
+.btn-p{background:var(--accent);color:var(--accent-fg);box-shadow:0 0 0 0 var(--glow)}
+.btn-p:hover{box-shadow:0 0 0 6px var(--glow);transform:translateY(-2px)}
+.btn-p:active{transform:translateY(0) scale(.98)}
+.btn-p:disabled{opacity:.5;cursor:not-allowed}
+.btn-g{background:transparent;color:var(--fg);border-color:var(--border-s)}
+.btn-g:hover{background:var(--card-h);border-color:var(--fg-soft);transform:translateY(-2px)}
+.btn-sm{padding:8px 16px;font-size:13px}
+.lib-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin-top:24px}
+.lib-card{padding:20px;border-radius:16px;background:var(--card);border:1px solid var(--border);transition:all .25s var(--ease);cursor:pointer;position:relative;overflow:hidden;text-align:left;color:inherit;font-family:inherit}
+.lib-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--accent);opacity:0;transition:opacity .25s var(--ease)}
+.lib-card:hover{background:var(--card-h);border-color:var(--border-s);transform:translateY(-2px)}
+.lib-card:hover::before{opacity:1}
+.lib-cat{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--fg-muted);margin-bottom:8px}
+.lib-title{font-size:15px;font-weight:600;color:var(--fg);margin-bottom:8px;line-height:1.3;letter-spacing:-.01em}
+.lib-desc{font-size:13px;color:var(--fg-soft);line-height:1.5}
+.lib-filters{display:flex;gap:8px;flex-wrap:wrap;margin-top:24px;margin-bottom:8px}
+.lib-chip{padding:6px 14px;border-radius:999px;background:var(--card);border:1px solid var(--border);font-size:13px;color:var(--fg-soft);transition:all .2s var(--ease);cursor:pointer;font-family:inherit}
+.lib-chip:hover{color:var(--fg);border-color:var(--border-s)}
+.lib-chip.on{background:var(--accent);color:var(--accent-fg);border-color:var(--accent);font-weight:600}
+.lib-search{width:100%;padding:12px 16px;border-radius:14px;background:var(--bg-elev);border:1px solid var(--border);font-size:14.5px;color:var(--fg);outline:none;transition:border-color .2s;margin-top:24px}
+.lib-search:focus{border-color:var(--border-s)}
+.cheat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;margin-top:32px}
+.cheat-card{padding:22px 24px;border-radius:18px;background:var(--card);border:1px solid var(--border);backdrop-filter:blur(20px)}
+.cheat-card h3{font-size:15px;font-weight:700;margin-bottom:14px;color:var(--fg);letter-spacing:-.01em;display:flex;align-items:center;gap:10px}
+.cheat-card h3 span:first-child{font-size:18px}
+.cheat-card ul{list-style:none}
+.cheat-card li{padding:9px 0;border-bottom:1px solid var(--border);font-size:13.5px;color:var(--fg-soft);line-height:1.5}
+.cheat-card li:last-child{border-bottom:none}
+.cheat-card li strong{color:var(--fg);font-weight:600;display:block;margin-bottom:2px}
+.pg{margin:24px 0;padding:24px;border-radius:22px;background:var(--bg-elev);border:1px solid var(--border)}
+.pg-head{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.pg-dot{width:10px;height:10px;border-radius:50%;background:var(--success);box-shadow:0 0 8px var(--success)}
+.pg-title{font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--fg-soft)}
+.pg textarea{width:100%;min-height:180px;padding:16px;border-radius:16px;background:var(--bg);border:1px solid var(--border);font-family:var(--mono);font-size:14px;line-height:1.65;resize:vertical;transition:border-color .2s;color:var(--fg)}
+.pg textarea:focus{border-color:var(--border-s);outline:none}
+.pg-actions{display:flex;justify-content:space-between;align-items:center;margin-top:12px;gap:12px;flex-wrap:wrap}
+.pg-hint{font-size:12px;color:var(--fg-muted)}
+.prompt-block{background:var(--bg-elev);border:1px solid var(--border);border-radius:16px;margin:0 0 16px;overflow:hidden}
+.prompt-head{display:flex;justify-content:space-between;align-items:center;padding:10px 16px;border-bottom:1px solid var(--border);background:var(--card)}
+.prompt-label{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--fg-muted)}
+.prompt-copy{font-size:12px;padding:4px 10px;border-radius:999px;border:1px solid var(--border);color:var(--fg-soft);transition:all .2s var(--ease);cursor:pointer}
+.prompt-copy:hover{color:var(--fg);border-color:var(--border-s);background:var(--card-h)}
+.prompt-body{padding:18px 20px;font-family:var(--mono);font-size:14px;line-height:1.65;color:var(--fg);white-space:pre-wrap;word-break:break-word}
+.grader-score-wrap{text-align:center;padding:24px 0}
+.grader-score{font-size:4.5rem;font-weight:800;letter-spacing:-.05em;line-height:1}
+.grader-score-lbl{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--fg-muted);margin-top:8px}
+.grader-meter{display:flex;align-items:center;gap:12px;margin:10px 0;font-size:13px}
+.grader-meter>span:first-child{color:var(--fg-soft);min-width:100px}
+.grader-meter .bar{flex:1;height:4px;border-radius:999px;background:var(--border);overflow:hidden}
+.grader-meter .bar-fill{height:100%;border-radius:inherit;transition:width .6s var(--ease)}
+.grader-meter>span:last-child{color:var(--fg);font-weight:600;font-variant-numeric:tabular-nums;min-width:44px;text-align:right}
+.grader-feedback{margin-top:24px;padding:20px 22px;border-radius:16px;background:var(--bg-elev);border:1px solid var(--border)}
+.grader-feedback h4{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--fg-muted);margin-bottom:12px}
+.grader-feedback ul{list-style:none}
+.grader-feedback li{padding:8px 0;font-size:14px;color:var(--fg-soft);display:flex;gap:10px;line-height:1.5}
+.grader-ok li::before{content:'✓';color:var(--success);flex-shrink:0;font-weight:700}
+.grader-warn li::before{content:'!';color:var(--warning);flex-shrink:0;font-weight:700}
+.grader-api{margin-top:20px;padding:14px 16px;border-radius:12px;background:var(--card);border:1px dashed var(--border)}
+.grader-api p{font-size:12.5px;color:var(--fg-muted);margin-bottom:10px;line-height:1.5}
+.grader-api input{width:100%;padding:10px 14px;border-radius:10px;background:var(--bg);border:1px solid var(--border);font-size:13px;font-family:var(--mono);color:var(--fg);outline:none}
+.grader-api input:focus{border-color:var(--border-s)}
+.toast-wrap{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:1000;display:flex;flex-direction:column;gap:10px;align-items:center;pointer-events:none;width:calc(100% - 32px);max-width:400px}
+.toast{background:var(--bg-elev);border:1px solid var(--border-s);border-radius:14px;padding:14px 18px;display:flex;align-items:center;gap:12px;box-shadow:0 20px 40px rgba(0,0,0,.35);backdrop-filter:blur(20px);pointer-events:auto;animation:toastIn .4s var(--spring) both;font-size:14px;color:var(--fg);min-width:200px}
+.toast.out{animation:toastOut .3s var(--ease) both}
+.toast-icon{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0}
+.toast.success .toast-icon{background:var(--success);color:#000}
+.toast.error .toast-icon{background:var(--danger);color:#fff}
+.toast.info .toast-icon{background:var(--info);color:#fff}
+.toast.warning .toast-icon{background:var(--warning);color:#000}
+.toast-msg{flex:1;line-height:1.4}
+@keyframes toastIn{from{opacity:0;transform:translateY(20px) scale(.95)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes toastOut{to{opacity:0;transform:translateY(20px) scale(.95)}}
+.modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.75);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:20px;z-index:1001;animation:fadeIn .2s var(--ease) both}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.modal-backdrop.out{animation:fadeOut .2s var(--ease) both}
+@keyframes fadeOut{to{opacity:0}}
+.modal{background:var(--bg-elev);border:1px solid var(--border-s);border-radius:22px;padding:24px;max-width:640px;width:100%;animation:modalIn .3s var(--spring) both;box-shadow:0 30px 60px rgba(0,0,0,.5);text-align:left}
+@keyframes modalIn{from{opacity:0;transform:scale(.9) translateY(20px)}to{opacity:1;transform:scale(1) translateY(0)}}
+.modal h3{font-size:1.2rem;font-weight:700;margin-bottom:16px;letter-spacing:-.02em;color:var(--fg)}
+.modal-actions{display:flex;gap:10px;justify-content:center;margin-top:8px}
+.modal-actions .btn{flex:1;justify-content:center}
+.confetti{position:fixed;inset:0;pointer-events:none;z-index:999;overflow:hidden}
+.cf{position:absolute;width:8px;height:8px;opacity:.9;animation:cfFall 2.5s ease-out forwards}
+@keyframes cfFall{0%{transform:translateY(-20px) rotate(0);opacity:1}100%{transform:translateY(100vh) rotate(720deg);opacity:0}}
+footer{position:relative;z-index:2;padding:32px 24px;border-top:1px solid var(--border);text-align:center;font-size:13px;color:var(--fg-muted);margin-top:auto}
+footer a{color:var(--fg-soft)}
+footer a:hover{color:var(--fg)}
+@media(max-width:640px){
+.hd-in{padding:0 16px}
+.page{padding:24px 20px 60px}
+.lib-grid,.cheat-grid{grid-template-columns:1fr}
+.tabs{gap:0}
+.tab{padding:10px 14px;font-size:13.5px;flex:1;text-align:center}
+}
+::selection{background:var(--fg);color:var(--bg)}
+</style>
+</head>
+<body>
+<div class="bg-3d"><div class="orb orb1"></div><div class="orb orb2"></div><div class="orb orb3"></div></div>
+<div class="toast-wrap" id="toastWrap"></div>
+<div id="modalRoot"></div>
+
+<header>
+<div class="hd-in">
+<a href="index.html" class="brand">
+<svg class="brand-logo" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+<defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="currentColor"/><stop offset="100%" stop-color="currentColor" stop-opacity=".6"/></linearGradient></defs>
+<rect width="512" height="512" rx="112" fill="currentColor" opacity=".08"/>
+<path d="M140 140 L140 372 L256 372 L256 300 L216 300 L216 268 L280 268 L280 372 L372 372 L372 140 L140 140 Z M216 216 L296 216 L296 244 L216 244 L216 216 Z" fill="url(#lg)"/>
+</svg>
+<span>Gate School</span>
+</a>
+<div class="hd-actions">
+<button class="icon-btn" id="langBtn">🇮🇩</button>
+<button class="icon-btn" id="themeBtn">☀️</button>
+</div>
+</div>
+</header>
+
+<main>
+<div class="page" id="page"></div>
+</main>
+
+<footer>
+<p id="footText">Dibuat dengan ❤️ · Gate School Extras</p>
+</footer>
+
+<script>
+// ============ I18N ============
+const I18N={
+id:{
+library:{tab:'Library',title:'Prompt Library',sub:'Koleksi prompt siap pakai. Copy, edit, adaptasi sesuai kebutuhan.',search:'Cari prompt...',all:'Semua',empty:'Belum ada prompt di kategori ini.'},
+cheat:{tab:'Cheat Sheet',title:'Cheat Sheet',sub:'Referensi cepat. Screenshot, bookmark, atau print.'},
+grader:{tab:'Prompt Grader',title:'Prompt Grader',sub:'Tempel prompt kamu, dapat skor + feedback instan.',placeholder:'Tempel prompt kamu di sini...',button:'Nilai Prompt',analyzing:'Menganalisis...',apiNote:'Mode offline (rule-based). Untuk feedback AI, masukkan OpenRouter API key.',apiPlaceholder:'sk-or-v1-... (opsional)',score:'Skor',offline:'Offline',ai:'AI',strengths:'Kekuatan',weaknesses:'Perbaikan',empty:'Prompt masih kosong.'},
+toast:{copied:'✓ Tersalin ke clipboard'},
+copy:'Copy',copied:'✓ Tersalin',close:'Tutup'
+},
+en:{
+library:{tab:'Library',title:'Prompt Library',sub:'Ready-to-use prompts. Copy, edit, adapt.',search:'Search prompts...',all:'All',empty:'No prompts in this category yet.'},
+cheat:{tab:'Cheat Sheet',title:'Cheat Sheet',sub:'Quick reference. Screenshot, bookmark, or print.'},
+grader:{tab:'Prompt Grader',title:'Prompt Grader',sub:'Paste your prompt, get instant score + feedback.',placeholder:'Paste your prompt here...',button:'Grade Prompt',analyzing:'Analyzing...',apiNote:'Offline mode (rule-based). For AI feedback, add an OpenRouter API key.',apiPlaceholder:'sk-or-v1-... (optional)',score:'Score',offline:'Offline',ai:'AI',strengths:'Strengths',weaknesses:'Improvements',empty:'Prompt is empty.'},
+toast:{copied:'✓ Copied to clipboard'},
+copy:'Copy',copied:'✓ Copied',close:'Close'
+}};
+
+// ============ STATE (sync dengan index.html) ============
+const store={
+get(k,d){try{const v=localStorage.getItem('gs.'+k);return v?JSON.parse(v):d}catch{return d}},
+set(k,v){try{localStorage.setItem('gs.'+k,JSON.stringify(v))}catch{}}
+};
+const state={theme:store.get('theme','dark'),lang:store.get('lang','id')};
+function save(){store.set('theme',state.theme);store.set('lang',state.lang)}
+function t(k){const path=k.split('.');let v=I18N[state.lang];for(const p of path){v=v?.[p]}return v||k}
+
+// ============ TOAST ============
+function toast(msg,type='info'){
+const wrap=document.getElementById('toastWrap');
+const el=document.createElement('div');
+el.className='toast '+type;
+const icons={success:'✓',error:'✕',info:'i',warning:'!'};
+el.innerHTML=`<span class="toast-icon">${icons[type]||'i'}</span><span class="toast-msg">${msg}</span>`;
+wrap.appendChild(el);
+setTimeout(()=>{el.classList.add('out');setTimeout(()=>el.remove(),300)},2800);
+}
+
+// ============ COPY ============
+window.copyPrompt=function(btn){
+const body=btn.closest('.prompt-block').querySelector('.prompt-body');
+navigator.clipboard.writeText(body.textContent).then(()=>{
+const orig=btn.textContent;btn.textContent=t('copied');
+toast(t('toast.copied'),'success');
+setTimeout(()=>btn.textContent=orig,1500);
+});
+};
+
+// ============ CONFETTI ============
+function confetti(){
+const c=document.createElement('div');c.className='confetti';document.body.appendChild(c);
+const colors=['#fff','#a0a0a0','#ffd60a','#30d158','#5e9eff'];
+for(let i=0;i<40;i++){
+const p=document.createElement('div');p.className='cf';
+p.style.left=Math.random()*100+'%';
+p.style.background=colors[Math.floor(Math.random()*colors.length)];
+p.style.width=(6+Math.random()*8)+'px';
+p.style.height=p.style.width;
+p.style.animationDelay=(Math.random()*.3)+'s';
+p.style.animationDuration=(2+Math.random()*1.5)+'s';
+c.appendChild(p);
+}
+setTimeout(()=>c.remove(),3500);
+}
+
+// ============ PROMPT LIBRARY DATA ============
+const PROMPT_LIBRARY=[
+{c:'Marketing',t:{id:'Caption Instagram Produk',en:'Product Instagram Caption'},d:{id:'Caption santai dengan hashtag relevan',en:'Casual caption with relevant hashtags'},p:{id:`Kamu adalah copywriter yang jago bikin caption Instagram viral.\n\nTASK: Bikin 3 caption Instagram untuk [PRODUK].\n\nCONTEXT:\nTarget: [TARGET AUDIENS]\nBrand tone: [NADA]\n\nFORMAT:\n- Maksimal 120 karakter per caption\n- Diakhiri 5 hashtag relevan\n\nCONSTRAINTS:\n- Hindari kata klise: kekinian, hits, viral\n\nOUTPUT: Langsung 3 caption.`,en:`You are a copywriter great at making viral Instagram captions.\n\nTASK: Write 3 Instagram captions for [PRODUCT].\n\nCONTEXT:\nTarget: [AUDIENCE]\nBrand tone: [TONE]\n\nFORMAT:\n- Max 120 chars per caption\n- End with 5 relevant hashtags\n\nCONSTRAINTS:\n- Avoid clichés: trendy, hits, viral\n\nOUTPUT: Just the 3 captions.`}},
+{c:'Marketing',t:{id:'Email Follow-up Klien',en:'Client Follow-up Email'},d:{id:'Email sopan tapi tegas untuk klien telat bayar',en:'Polite but firm email for late-paying client'},p:{id:`Kamu adalah freelancer profesional yang sopan tapi tegas.\n\nTASK: Tulis email follow-up ke klien yang terlambat bayar invoice.\n\nCONTEXT:\nInvoice: [JUMLAH], terlambat [DURASI]\nHubungan: [BAIK/BARU]\n\nFORMAT:\n- Subjek email\n- Body maksimal 5 kalimat\n- CTA jelas\n\nCONSTRAINTS:\n- Jangan pakai kata "mendesak" atau "segera"\n\nOUTPUT: Langsung emailnya.`,en:`You are a professional freelancer — polite but firm.\n\nTASK: Write a follow-up email to a client late paying an invoice.\n\nCONTEXT:\nInvoice: [AMOUNT], overdue by [DURATION]\nRelationship: [GOOD/NEW]\n\nFORMAT:\n- Subject line\n- Body max 5 sentences\n- Clear CTA\n\nCONSTRAINTS:\n- Avoid "urgent" or "immediately"\n\nOUTPUT: Just the email.`}},
+{c:'Marketing',t:{id:'Landing Page Copy',en:'Landing Page Copy'},d:{id:'Hero, value props, CTA',en:'Hero, value props, CTA'},p:{id:`Kamu adalah conversion copywriter dengan 10 tahun pengalaman.\n\nTASK: Tulis copy landing page untuk [PRODUK].\n\nCONTEXT:\nMasalah yang diselesaikan: [MASALAH]\nTarget: [AUDIENS]\nDifferentiator: [YANG BEDA]\n\nFORMAT:\n1. Hero headline (max 10 kata) + subheadline\n2. 3 value props\n3. CTA utama (max 5 kata)\n\nCONSTRAINTS:\n- Fokus benefit, bukan fitur\n\nOUTPUT: Markdown.`,en:`You are a conversion copywriter with 10 years of experience.\n\nTASK: Write landing page copy for [PRODUCT].\n\nCONTEXT:\nProblem solved: [PROBLEM]\nTarget: [AUDIENCE]\nDifferentiator: [WHAT'S DIFFERENT]\n\nFORMAT:\n1. Hero headline (max 10 words) + subheadline\n2. 3 value props\n3. Main CTA (max 5 words)\n\nCONSTRAINTS:\n- Benefit-driven, not features\n\nOUTPUT: Markdown.`}},
+{c:'Marketing',t:{id:'Content Plan 30 Hari',en:'30-Day Content Plan'},d:{id:'Kalender konten dengan tema harian',en:'Content calendar with daily themes'},p:{id:`Kamu adalah content strategist untuk [PLATFORM].\n\nTASK: Bikin content plan 30 hari untuk [NICHE].\n\nCONTEXT:\nTarget: [AUDIENS]\nGoal: [GOAL]\n\nFORMAT:\n- Tabel: Hari | Tema | Format | Hook\n- 5 pillar konten\n\nOUTPUT: Langsung tabelnya.`,en:`You are a content strategist for [PLATFORM].\n\nTASK: Build a 30-day content plan for [NICHE].\n\nCONTEXT:\nTarget: [AUDIENCE]\nGoal: [GOAL]\n\nFORMAT:\n- Table: Day | Theme | Format | Hook\n- 5 content pillars\n\nOUTPUT: Just the table.`}},
+{c:'Writing',t:{id:'Artikel Blog SEO',en:'SEO Blog Article'},d:{id:'Artikel 1000 kata teroptimasi',en:'Optimized 1000-word article'},p:{id:`Kamu adalah content writer spesialis SEO.\n\nTASK: Tulis artikel blog 1000 kata tentang [TOPIK].\n\nCONTEXT:\nPrimary keyword: [KEYWORD]\nTarget: [AUDIENS]\nSearch intent: [INFORMASIONAL/TRANSACTIONAL]\n\nFORMAT:\n- H1 + meta description (max 160 karakter)\n- 4-5 H2\n- Intro 100 kata dengan hook\n- Kesimpulan + CTA\n\nCONSTRAINTS:\n- Keyword density natural (1-2%)\n\nOUTPUT: Markdown.`,en:`You are an SEO content writer.\n\nTASK: Write a 1000-word blog article about [TOPIC].\n\nCONTEXT:\nPrimary keyword: [KEYWORD]\nTarget: [AUDIENCE]\nIntent: [INFORMATIONAL/TRANSACTIONAL]\n\nFORMAT:\n- H1 + meta description (max 160 chars)\n- 4-5 H2\n- 100-word intro with hook\n- Conclusion + CTA\n\nCONSTRAINTS:\n- Natural keyword density (1-2%)\n\nOUTPUT: Markdown.`}},
+{c:'Writing',t:{id:'Ringkas Dokumen',en:'Summarize Document'},d:{id:'Ringkasan berlapis',en:'Layered summary'},p:{id:`Kamu adalah editor yang jago ngeringkas.\n\nTASK: Ringkas dokumen di bawah.\n\nFORMAT:\n1. TL;DR: 1 kalimat\n2. Ringkasan: 1 paragraf (max 5 kalimat)\n3. Poin kunci: 5-7 bullet\n4. Action items (kalau ada)\n\nCONSTRAINTS:\n- Pertahankan angka & fakta penting\n\nDOKUMEN:\n[PASTE DI SINI]`,en:`You are an editor great at summarizing.\n\nTASK: Summarize the document below.\n\nFORMAT:\n1. TL;DR: 1 sentence\n2. Summary: 1 paragraph (max 5 sentences)\n3. Key points: 5-7 bullets\n4. Action items (if any)\n\nCONSTRAINTS:\n- Keep numbers & key facts\n\nDOCUMENT:\n[PASTE HERE]`}},
+{c:'Writing',t:{id:'Rewrite Lebih Jelas',en:'Rewrite for Clarity'},d:{id:'Rapikan tulisan berantakan',en:'Clean up messy writing'},p:{id:`Kamu adalah editor profesional.\n\nTASK: Rewrite teks di bawah biar lebih jelas, ringkas, enak dibaca.\n\nATURAN:\n- Pertahankan makna asli\n- Perbaiki ejaan, tanda baca, alur\n- Kalimat max 20 kata\n\nOUTPUT: Langsung teks yang diperbaiki.\n\nTEKS:\n[PASTE DI SINI]`,en:`You are a professional editor.\n\nTASK: Rewrite the text below to be clearer, tighter, more readable.\n\nRULES:\n- Keep original meaning\n- Fix spelling, punctuation, flow\n- Sentences max 20 words\n\nOUTPUT: Just the rewritten text.\n\nTEXT:\n[PASTE HERE]`}},
+{c:'Coding',t:{id:'Code Review',en:'Code Review'},d:{id:'Review bug, style, security',en:'Review bugs, style, security'},p:{id:`Kamu adalah senior engineer dengan 10 tahun pengalaman.\n\nTASK: Review kode di bawah.\n\nFORMAT:\n1. Ringkasan (2-3 kalimat)\n2. 🐛 Bugs — list + penjelasan\n3. ⚡ Performance\n4. 🔒 Security\n5. 🎨 Style\n6. ✅ Yang sudah bagus\n\nKODE:\n[PASTE KODE]`,en:`You are a senior engineer with 10 years of experience.\n\nTASK: Review the code below.\n\nFORMAT:\n1. Summary (2-3 sentences)\n2. 🐛 Bugs — list + explanation\n3. ⚡ Performance\n4. 🔒 Security\n5. 🎨 Style\n6. ✅ What's good\n\nCODE:\n[PASTE CODE]`}},
+{c:'Coding',t:{id:'Jelasin Kode',en:'Explain Code'},d:{id:'Penjelasan kode untuk level tertentu',en:'Code explanation for a specific level'},p:{id:`Kamu adalah mentor coding yang sabar.\n\nTASK: Jelasin kode di bawah ke [LEVEL: pemula/menengah/advanced].\n\nFORMAT:\n1. Big picture: kode ngapain\n2. Step by step\n3. Konsep penting\n4. Analogi sederhana\n5. Kalau mau modif, mulai dari mana\n\nKODE:\n[PASTE KODE]`,en:`You are a patient coding mentor.\n\nTASK: Explain the code below to a [LEVEL: beginner/intermediate/advanced].\n\nFORMAT:\n1. Big picture: what it does\n2. Step by step\n3. Key concepts\n4. Simple analogy\n5. Where to start modifying\n\nCODE:\n[PASTE CODE]`}},
+{c:'Coding',t:{id:'Debug Helper',en:'Debug Helper'},d:{id:'Bantu cari penyebab error',en:'Help find error cause'},p:{id:`Kamu adalah debugging expert.\n\nTASK: Bantu cari penyebab error berikut.\n\nERROR:\n[PASTE ERROR]\n\nKODE:\n[PASTE KODE]\n\nKONTEKS:\n- Bahasa/framework: [X]\n- Sudah coba: [YANG DICOBA]\n\nFORMAT:\n1. Kemungkinan penyebab (urut)\n2. Cara verifikasi\n3. Fix\n4. Cara prevent\n\nOUTPUT: Langsung ke poin.`,en:`You are a debugging expert.\n\nTASK: Help find the cause of this error.\n\nERROR:\n[PASTE ERROR]\n\nCODE:\n[PASTE CODE]\n\nCONTEXT:\n- Language/framework: [X]\n- Tried: [WHAT YOU TRIED]\n\nFORMAT:\n1. Likely causes (ordered)\n2. How to verify\n3. Fix\n4. Prevention\n\nOUTPUT: Straight to the point.`}},
+{c:'Productivity',t:{id:'Breakdown Project',en:'Project Breakdown'},d:{id:'Pecah project besar jadi task kecil',en:'Split project into small tasks'},p:{id:`Kamu adalah project manager berpengalaman.\n\nTASK: Pecah project "[NAMA]" jadi task kecil.\n\nCONTEXT:\nDeadline: [TANGGAL]\nResources: [TIM/TOOLS]\n\nFORMAT:\n- Fase (max 5)\n- Task dengan estimasi jam\n- Dependencies\n- Milestone\n\nCONSTRAINTS:\n- Task max 4 jam\n\nOUTPUT: Markdown.`,en:`You are an experienced project manager.\n\nTASK: Break down "[PROJECT]" into small tasks.\n\nCONTEXT:\nDeadline: [DATE]\nResources: [TEAM/TOOLS]\n\nFORMAT:\n- Phases (max 5)\n- Tasks with hour estimates\n- Dependencies\n- Milestones\n\nCONSTRAINTS:\n- Tasks max 4 hours\n\nOUTPUT: Markdown.`}},
+{c:'Productivity',t:{id:'Weekly Review',en:'Weekly Review'},d:{id:'Refleksi mingguan terstruktur',en:'Structured weekly reflection'},p:{id:`Kamu adalah coach produktivitas.\n\nTASK: Pandu aku weekly review.\n\nFORMAT:\n1. 3 pencapaian terbesar minggu ini?\n2. Apa yang gak selesai? Kenapa?\n3. Apa yang harus di-drop?\n4. 3 prioritas minggu depan?\n5. 1 hal yang mau dipelajari?\n\nATURAN:\n- Tanya satu per satu, tunggu jawabanku\n- Setelah semua, kasih ringkasan + saran\n\nMULAI dari pertanyaan 1.`,en:`You are a productivity coach.\n\nTASK: Guide me through a weekly review.\n\nFORMAT:\n1. Top 3 wins this week?\n2. What didn't finish? Why?\n3. What should be dropped?\n4. Top 3 priorities next week?\n5. 1 thing to learn?\n\nRULES:\n- Ask one at a time, wait for answer\n- Give summary + advice at end\n\nSTART with question 1.`}},
+{c:'Productivity',t:{id:'Bikin SOP',en:'Build SOP'},d:{id:'Standar operasional dari proses manual',en:'SOP from a manual process'},p:{id:`Kamu adalah operations manager.\n\nTASK: Bikin SOP untuk proses "[NAMA]".\n\nCONTEXT:\nFrekuensi: [HARIAN/MINGGUAN]\nTerlibat: [ROLE]\nOutput: [OUTPUT]\n\nFORMAT:\n1. Tujuan\n2. Scope\n3. Prasyarat\n4. Langkah-langkah (numbered + estimasi waktu)\n5. Quality check\n6. Troubleshooting\n\nOUTPUT: Dokumen siap pakai.`,en:`You are an operations manager.\n\nTASK: Build an SOP for "[PROCESS]".\n\nCONTEXT:\nFrequency: [DAILY/WEEKLY]\nInvolved: [ROLES]\nOutput: [OUTPUT]\n\nFORMAT:\n1. Purpose\n2. Scope\n3. Prerequisites\n4. Steps (numbered + time)\n5. Quality checks\n6. Troubleshooting\n\nOUTPUT: Ready-to-use doc.`}},
+{c:'Analysis',t:{id:'Analisis SWOT',en:'SWOT Analysis'},d:{id:'SWOT dengan action items',en:'SWOT with action items'},p:{id:`Kamu adalah business analyst.\n\nTASK: SWOT untuk [PERUSAHAAN/IDE].\n\nCONTEXT:\nIndustri: [X]\nTarget market: [Y]\nKondisi: [Z]\n\nFORMAT:\n1. Strengths (5-7)\n2. Weaknesses (5-7, jujur)\n3. Opportunities (5-7)\n4. Threats (5-7)\n5. Strategi SO/WO/ST/WT\n6. 3 action items prioritas\n\nOUTPUT: Markdown.`,en:`You are a business analyst.\n\nTASK: SWOT for [COMPANY/IDEA].\n\nCONTEXT:\nIndustry: [X]\nTarget: [Y]\nState: [Z]\n\nFORMAT:\n1. Strengths (5-7)\n2. Weaknesses (5-7, honest)\n3. Opportunities (5-7)\n4. Threats (5-7)\n5. SO/WO/ST/WT strategies\n6. Top 3 actions\n\nOUTPUT: Markdown.`}},
+{c:'Analysis',t:{id:'Decision Framework',en:'Decision Framework'},d:{id:'Bantu mutusin dengan kriteria jelas',en:'Help decide with clear criteria'},p:{id:`Kamu adalah strategic advisor.\n\nTASK: Bantu aku mutusin [KEPUTUSAN].\n\nOPSI:\nA) [OPSI A]\nB) [OPSI B]\nC) [OPSI C]\n\nPrioritas: [PRIORITAS]\nConstraints: [BATASAN]\n\nFORMAT:\n1. Kriteria (5-7)\n2. Tabel skor tiap opsi\n3. Analisis trade-off\n4. Rekomendasi + alasan\n5. Risiko + mitigasi\n\nOUTPUT: Markdown.`,en:`You are a strategic advisor.\n\nTASK: Help me decide [DECISION].\n\nOPTIONS:\nA) [A]\nB) [B]\nC) [C]\n\nPriorities: [X]\nConstraints: [Y]\n\nFORMAT:\n1. Criteria (5-7)\n2. Score table per option\n3. Trade-off analysis\n4. Recommendation + reason\n5. Risks + mitigations\n\nOUTPUT: Markdown.`}}
+];
+
+// ============ CHEAT SHEET DATA ============
+const CHEAT=[
+{icon:'🧬',s:'anatomy',items:[
+['<strong>Role</strong>',{id:'Siapa AI: "Kamu adalah..."',en:'Who AI is: "You are..."'}],
+['<strong>Task</strong>',{id:'Aksi spesifik',en:'Specific action'}],
+['<strong>Context</strong>',{id:'Latar, audiens, tujuan',en:'Background, audience, goal'}],
+['<strong>Format</strong>',{id:'Bullet, tabel, paragraf, JSON',en:'Bullets, table, paragraph, JSON'}],
+['<strong>Examples</strong>',{id:'1-3 contoh (few-shot)',en:'1-3 samples (few-shot)'}],
+['<strong>Constraints</strong>',{id:'Batasan: hindari X, max Y',en:'Limits: avoid X, max Y'}]]},
+{icon:'⚡',s:'techniques',items:[
+['<strong>Zero-shot</strong>',{id:'Langsung minta, tanpa contoh',en:'Ask directly, no examples'}],
+['<strong>Few-shot</strong>',{id:'Kasih 3-5 contoh dulu',en:'Give 3-5 examples first'}],
+['<strong>Chain of Thought</strong>',{id:'Minta "berpikir langkah demi langkah"',en:'Ask to "think step by step"'}],
+['<strong>Role Prompting</strong>',{id:'Assign persona ke AI',en:'Assign persona to AI'}],
+['<strong>ReAct</strong>',{id:'Reasoning + Acting berulang',en:'Iterative reasoning + acting'}],
+['<strong>Meta-prompting</strong>',{id:'Minta AI bikin prompt sendiri',en:'Ask AI to write prompts'}]]},
+{icon:'⚠️',s:'mistakes',items:[
+['<strong>Vague</strong>',{id:'"Bikin konten bagus" → jelek',en:'"Make good content" → bad'}],
+['<strong>No context</strong>',{id:'AI nebak = sering salah',en:'AI guesses = often wrong'}],
+['<strong>Multi-task</strong>',{id:'Numpuk 5 task → hasil jelek',en:'5 tasks at once → bad output'}],
+['<strong>No format</strong>',{id:'Hasil jadi tembok teks',en:'Result = wall of text'}],
+['<strong>No iterate</strong>',{id:'Percobaan pertama = draft',en:'First try = draft'}],
+['<strong>Blind trust</strong>',{id:'Fakta wajib diverifikasi',en:'Always verify facts'}]]},
+{icon:'🔄',s:'workflow',items:[
+['<strong>1. Start simple</strong>',{id:'Prompt 4 kata dulu',en:'4-word prompt first'}],
+['<strong>2. Add role</strong>',{id:'Tambah "Kamu adalah..."',en:'Add "You are..."'}],
+['<strong>3. Add context</strong>',{id:'Audiens, tujuan, latar',en:'Audience, goal, background'}],
+['<strong>4. Add format</strong>',{id:'Spesifik output shape',en:'Specific output shape'}],
+['<strong>5. Add constraints</strong>',{id:'Batasan & hindari',en:'Limits & exclusions'}],
+['<strong>6. Iterate</strong>',{id:'Test → perbaiki → test',en:'Test → refine → test'}]]}
+];
+
+// ============ PROMPT GRADER ============
+function analyzePrompt(text){
+if(!text||text.trim().length<10)return{score:0,strengths:[],weaknesses:['Prompt terlalu pendek. Tulis minimal 10 karakter.']};
+const t=text.toLowerCase();
+let score=3;
+const strengths=[],weaknesses=[];
+const checks=[
+{ok:/kamu adalah|you are|act as|sebagai|berperan/.test(t),s:1.5,sMsg:'Ada role/persona',wMsg:'Tambahin role: "Kamu adalah..."'},
+{ok:text.length>=100,s:1,sMsg:'Panjang prompt memadai',wMsg:'Prompt terlalu pendek, tambah detail'},
+{ok:/target|audiens|audience|untuk|for|konteks|context|latar/.test(t),s:1.5,sMsg:'Ada konteks/audiens',wMsg:'Kasih konteks: target audiens, latar'},
+{ok:/format|output|bullet|list|tabel|table|json|markdown|paragraf|kalimat/.test(t),s:1.5,sMsg:'Ada format output',wMsg:'Sebutin format: bullet, tabel, JSON'},
+{ok:/hindari|jangan|avoid|don't|maksimal|max|minimal|min|wajib|must|hanya|only|tanpa/.test(t),s:1,sMsg:'Ada constraints',wMsg:'Tambahin batasan: "hindari X", "max Y"'},
+{ok:/contoh|example|misalnya|seperti|such as/.test(t),s:0.5,sMsg:'Ada contoh',wMsg:'Tambahin 1-3 contoh (few-shot)'}
+];
+checks.forEach(c=>{if(c.ok){score+=c.s;strengths.push(c.sMsg)}else{weaknesses.push(c.wMsg)}});
+return{score:Math.min(10,Math.round(score*10)/10),strengths,weaknesses};
+}
+async function gradeWithAI(prompt,apiKey){
+const sysMsg='You are a prompt engineering expert. Rate the user prompt 1-10 and give feedback in the same language as the prompt. Reply ONLY with valid JSON: {"score":number,"strengths":["..."],"weaknesses":["..."]}. Max 4 each. Each point max 12 words.';
+const res=await fetch('https://openrouter.ai/api/v1/chat/completions',{
+method:'POST',
+headers:{'Content-Type':'application/json','Authorization':'Bearer '+apiKey},
+body:JSON.stringify({model:'openai/gpt-4o-mini',messages:[{role:'system',content:sysMsg},{role:'user',content:prompt}],response_format:{type:'json_object'}})
+});
+if(!res.ok)throw new Error('API error: '+res.status);
+const data=await res.json();
+return JSON.parse(data.choices[0].message.content);
+}
+
+// ============ RENDER ============
+let libState={cat:'All',q:''};
+let currentTab='library';
+
+function renderTabs(){
+const tabs=[
+{id:'library',label:t('library.tab')},
+{id:'cheat',label:t('cheat.tab')},
+{id:'grader',label:t('grader.tab')}
+];
+return `<div class="tabs">${tabs.map(x=>`<button class="tab ${currentTab===x.id?'on':''}" onclick="switchTab('${x.id}')">${x.label}</button>`).join('')}</div>`;
+}
+
+function renderLibrary(){
+const cats=['All',...new Set(PROMPT_LIBRARY.map(p=>p.c))];
+const q=libState.q.toLowerCase().trim();
+const filtered=PROMPT_LIBRARY.filter(p=>{
+const okCat=libState.cat==='All'||p.c===libState.cat;
+if(!okCat)return false;
+if(!q)return true;
+return (p.t[state.lang]+' '+p.d[state.lang]).toLowerCase().includes(q);
+});
+return `
+<h1>${t('library.title')}</h1>
+<p class="page-sub">${t('library.sub')}</p>
+<input class="lib-search" type="text" placeholder="${t('library.search')}" value="${libState.q.replace(/"/g,'&quot;')}" oninput="libSearch(this.value)">
+<div class="lib-filters">
+${cats.map(c=>`<button class="lib-chip ${libState.cat===c?'on':''}" onclick="libFilter('${c}')">${c==='All'?t('library.all'):c}</button>`).join('')}
+</div>
+<div class="lib-grid">
+${filtered.length===0?`<p style="color:var(--fg-muted);grid-column:1/-1;text-align:center;padding:40px">${t('library.empty')}</p>`:filtered.map(p=>`
+<button class="lib-card" onclick="showPrompt('${p.t.id.replace(/'/g,"\\'")}')">
+<div class="lib-cat">${p.c}</div>
+<div class="lib-title">${p.t[state.lang]}</div>
+<div class="lib-desc">${p.d[state.lang]}</div>
+</button>`).join('')}
+</div>`;
+}
+
+function renderCheat(){
+return `
+<h1>${t('cheat.title')}</h1>
+<p class="page-sub">${t('cheat.sub')}</p>
+<div class="cheat-grid">
+${CHEAT.map(c=>`<div class="cheat-card">
+<h3><span>${c.icon}</span><span>${state.lang==='id'?{anatomy:'Anatomi Prompt',techniques:'Teknik Utama',mistakes:'Kesalahan Umum',workflow:'Alur Kerja'}[c.s]:{anatomy:'Prompt Anatomy',techniques:'Core Techniques',mistakes:'Common Mistakes',workflow:'Workflow'}[c.s]}</span></h3>
+<ul>${c.items.map(([k,v])=>`<li>${k}${v[state.lang]}</li>`).join('')}</ul>
+</div>`).join('')}
+</div>`;
+}
+
+function renderGrader(){
+const saved=localStorage.getItem('gs.apikey')||'';
+return `
+<h1>${t('grader.title')}</h1>
+<p class="page-sub">${t('grader.sub')}</p>
+<div class="pg">
+<div class="pg-head"><span class="pg-dot"></span><span class="pg-title">${state.lang==='id'?'Prompt Kamu':'Your Prompt'}</span></div>
+<textarea id="gradeInput" placeholder="${t('grader.placeholder')}"></textarea>
+<div class="pg-actions">
+<span class="pg-hint" id="gradeCount">0 karakter</span>
+<button class="btn btn-p btn-sm" id="gradeBtn">${t('grader.button')} →</button>
+</div>
+</div>
+<div class="grader-api">
+<p>${t('grader.apiNote')}</p>
+<input type="password" id="gradeApi" placeholder="${t('grader.apiPlaceholder')}" value="${saved.replace(/"/g,'&quot;')}">
+</div>
+<div id="gradeResult"></div>`;
+}
+
+function render(){
+document.documentElement.setAttribute('data-theme',state.theme);
+document.documentElement.setAttribute('lang',state.lang);
+document.getElementById('langBtn').textContent=state.lang==='id'?'🇮🇩':'🇬🇧';
+document.getElementById('themeBtn').textContent=state.theme==='dark'?'☀️':'🌙';
+const page=document.getElementById('page');
+let body='';
+if(currentTab==='library')body=renderLibrary();
+else if(currentTab==='cheat')body=renderCheat();
+else if(currentTab==='grader')body=renderGrader();
+page.innerHTML=renderTabs()+body;
+
+const gi=document.getElementById('gradeInput');
+if(gi){
+gi.addEventListener('input',()=>{document.getElementById('gradeCount').textContent=gi.value.length+' karakter'});
+document.getElementById('gradeBtn').addEventListener('click',()=>window.gradePrompt());
+}
+}
+
+// ============ EVENTS ============
+window.switchTab=function(id){currentTab=id;render();window.scrollTo({top:0,behavior:'smooth'})};
+window.libFilter=function(cat){libState.cat=cat;render()};
+window.libSearch=function(q){libState.q=q;const grid=document.querySelector('.lib-grid');const filtered=PROMPT_LIBRARY.filter(p=>{const okCat=libState.cat==='All'||p.c===libState.cat;if(!okCat)return false;if(!q.trim())return true;return (p.t[state.lang]+' '+p.d[state.lang]).toLowerCase().includes(q.toLowerCase())});grid.innerHTML=filtered.length===0?`<p style="color:var(--fg-muted);grid-column:1/-1;text-align:center;padding:40px">${t('library.empty')}</p>`:filtered.map(p=>`<button class="lib-card" onclick="showPrompt('${p.t.id.replace(/'/g,"\\'")}')"><div class="lib-cat">${p.c}</div><div class="lib-title">${p.t[state.lang]}</div><div class="lib-desc">${p.d[state.lang]}</div></button>`).join('')};
+window.showPrompt=function(titleId){
+const p=PROMPT_LIBRARY.find(x=>x.t.id===titleId);if(!p)return;
+const root=document.getElementById('modalRoot');
+const bd=document.createElement('div');
+bd.className='modal-backdrop';
+bd.innerHTML=`<div class="modal">
+<div style="font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--fg-muted);margin-bottom:8px">${p.c}</div>
+<h3>${p.t[state.lang]}</h3>
+<div class="prompt-block">
+<div class="prompt-head"><span class="prompt-label">Prompt</span><button class="prompt-copy" onclick="copyPrompt(this)">${t('copy')}</button></div>
+<div class="prompt-body" style="max-height:50vh;overflow-y:auto">${p.p[state.lang]}</div>
+</div>
+<div class="modal-actions">
+<button class="btn btn-g" data-act="close">${t('close')}</button>
+</div>
+</div>`;
+root.appendChild(bd);
+function close(){bd.classList.add('out');setTimeout(()=>bd.remove(),200)}
+bd.addEventListener('click',e=>{if(e.target===bd||e.target.closest('[data-act="close"]'))close()});
+const esc=e=>{if(e.key==='Escape'){document.removeEventListener('keydown',esc);close()}};
+document.addEventListener('keydown',esc);
+};
+
+window.gradePrompt=async function(){
+const input=document.getElementById('gradeInput');
+const apiInput=document.getElementById('gradeApi');
+const result=document.getElementById('gradeResult');
+const btn=document.getElementById('gradeBtn');
+const text=input.value.trim();
+if(!text){toast(t('grader.empty'),'warning');return}
+const apiKey=apiInput.value.trim();
+if(apiKey)localStorage.setItem('gs.apikey',apiKey);
+btn.disabled=true;
+const orig=btn.textContent;
+btn.textContent=t('grader.analyzing');
+result.innerHTML='';
+let data,mode;
+try{
+if(apiKey){data=await gradeWithAI(text,apiKey);mode='ai';}
+else{data=analyzePrompt(text);mode='offline';}
+}catch(err){
+toast('API error: '+err.message,'error');
+data=analyzePrompt(text);mode='offline';
+}
+btn.disabled=false;btn.textContent=orig;
+const pct=Math.min(100,data.score*10);
+const color=data.score>=8?'var(--success)':data.score>=5?'var(--warning)':'var(--danger)';
+result.innerHTML=`
+<div class="grader-feedback">
+<div class="grader-score-wrap">
+<div class="grader-score" style="color:${color};-webkit-text-fill-color:${color}">${data.score}</div>
+<div class="grader-score-lbl">${t('grader.score')} / 10 · ${mode==='ai'?t('grader.ai'):t('grader.offline')}</div>
+</div>
+<div class="grader-meter">
+<span>${t('grader.score')}</span>
+<div class="bar"><div class="bar-fill" style="width:${pct}%;background:${color}"></div></div>
+<span>${data.score}/10</span>
+</div>
+${data.strengths&&data.strengths.length?`<div class="grader-feedback grader-ok" style="margin-top:24px"><h4>${t('grader.strengths')}</h4><ul>${data.strengths.map(s=>`<li>${s}</li>`).join('')}</ul></div>`:''}
+${data.weaknesses&&data.weaknesses.length?`<div class="grader-feedback grader-warn" style="margin-top:16px"><h4>${t('grader.weaknesses')}</h4><ul>${data.weaknesses.map(w=>`<li>${w}</li>`).join('')}</ul></div>`:''}
+</div>`;
+if(data.score>=8)confetti();
+};
+
+document.getElementById('langBtn').addEventListener('click',()=>{state.lang=state.lang==='id'?'en':'id';save();render()});
+document.getElementById('themeBtn').addEventListener('click',()=>{state.theme=state.theme==='dark'?'light':'dark';save();render()});
+
+render();
+</script>
+</body>
+</html>
