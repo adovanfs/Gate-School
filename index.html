@@ -962,7 +962,7 @@ return Math.max(1,Math.ceil(words/220));
 }
 
 function renderNav(){
-const routes=[['#/','home'],['#/kurikulum','curriculum'],['#/progress','progress'],['#/tentang','about']];
+const routes=[['#/','home'],['#/kurikulum','curriculum'],['extras.html','Extras ✨'],['#/progress','progress'],['#/tentang','about']];
 const current=location.hash||'#/';
 document.getElementById('nav').innerHTML=routes.map(([h,k])=>{
 const on=(current===h||(h!=='#/'&&current.startsWith(h)))?'on':'';
