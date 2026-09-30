@@ -8,6 +8,14 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Gate School">
+<meta property="og:title" content="Gate School — Prompt Mastery">
+<meta property="og:description" content="Sekolah Prompt AI bilingual. Dari nol sampai master. Gratis, interaktif, open source.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="og-image.svg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Gate School — Prompt Mastery">
+<meta name="twitter:description" content="Sekolah Prompt AI bilingual. Dari nol sampai master.">
+<meta name="twitter:image" content="og-image.svg">
 <title>Gate School — Prompt Mastery</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='112' fill='%23000'/%3E%3Cpath d='M140 140 L140 372 L256 372 L256 300 L216 300 L216 268 L280 268 L280 372 L372 372 L372 140 L140 140 Z M216 216 L296 216 L296 244 L216 244 L216 216 Z' fill='%23fff'/%3E%3C/svg%3E">
 <style>
@@ -16,7 +24,7 @@
 --bg:#000;--bg-soft:#0a0a0a;--bg-elev:#141414;--card:rgba(255,255,255,.03);--card-h:rgba(255,255,255,.06);
 --fg:#f5f5f7;--fg-soft:#a1a1a6;--fg-muted:#6e6e73;--border:rgba(255,255,255,.08);--border-s:rgba(255,255,255,.16);
 --accent:#fff;--accent-fg:#000;--glow:rgba(255,255,255,.2);
---success:#30d158;--warning:#ffd60a;--danger:#ff453a;
+--success:#30d158;--warning:#ffd60a;--danger:#ff453a;--info:#0a84ff;
 --font:-apple-system,BlinkMacSystemFont,'SF Pro Display','Inter','Segoe UI',system-ui,sans-serif;
 --serif:'New York','Playfair Display',Georgia,serif;
 --mono:'SF Mono','JetBrains Mono',Menlo,Consolas,monospace;
@@ -59,7 +67,6 @@ header.scrolled{border-bottom-color:var(--border);box-shadow:0 8px 24px rgba(0,0
 .icon-btn:active{transform:scale(.94)}
 main{flex:1;position:relative;z-index:2}
 .container{width:100%;max-width:1080px;margin:0 auto;padding:0 24px}
-.narrow{max-width:720px}
 .hero{padding:100px 24px 80px;text-align:center;overflow:hidden;position:relative;z-index:2}
 .badge{display:inline-flex;align-items:center;gap:8px;padding:6px 14px 6px 8px;border-radius:999px;background:var(--card);border:1px solid var(--border);font-size:13px;color:var(--fg-soft);margin-bottom:28px;backdrop-filter:blur(20px);animation:up .6s var(--ease) both}
 .badge-dot{width:18px;height:18px;border-radius:50%;background:var(--success);box-shadow:0 0 12px var(--success);animation:pulse 2s ease-in-out infinite}
@@ -75,6 +82,8 @@ main{flex:1;position:relative;z-index:2}
 .btn-p:active{transform:translateY(0) scale(.98)}
 .btn-g{background:transparent;color:var(--fg);border-color:var(--border-s)}
 .btn-g:hover{background:var(--card-h);border-color:var(--fg-soft);transform:translateY(-2px)}
+.btn-danger{background:var(--danger);color:#fff}
+.btn-danger:hover{box-shadow:0 0 0 6px rgba(255,69,58,.2);transform:translateY(-2px)}
 .btn-sm{padding:8px 16px;font-size:13px}
 .stack{position:relative;perspective:1400px;width:100%;height:380px;margin:60px auto 0;max-width:640px;z-index:2;will-change:transform}
 .stack-card{position:absolute;inset:0;border-radius:32px;background:linear-gradient(135deg,var(--bg-elev),var(--bg-soft));border:1px solid var(--border-s);padding:36px 32px;display:flex;flex-direction:column;justify-content:space-between;transform-style:preserve-3d;box-shadow:0 30px 60px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.06);transition:transform .9s var(--ease)}
@@ -108,7 +117,10 @@ main{flex:1;position:relative;z-index:2}
 .crumb{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--fg-muted);margin-bottom:24px;flex-wrap:wrap}
 .crumb a:hover{color:var(--fg)}
 .lesson h1{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:700;letter-spacing:-.035em;line-height:1.1;margin-bottom:16px}
-.lesson-meta{display:flex;gap:12px;font-size:13px;color:var(--fg-muted);margin-bottom:40px;padding-bottom:24px;border-bottom:1px solid var(--border);flex-wrap:wrap}
+.lesson-meta{display:flex;gap:12px;font-size:13px;color:var(--fg-muted);margin-bottom:40px;padding-bottom:24px;border-bottom:1px solid var(--border);flex-wrap:wrap;align-items:center}
+.bookmark-btn{margin-left:auto;font-size:13px;padding:4px 12px;border-radius:999px;border:1px solid var(--border);color:var(--fg-soft);transition:all .2s var(--ease);display:inline-flex;align-items:center;gap:6px}
+.bookmark-btn:hover{color:var(--fg);border-color:var(--border-s);background:var(--card-h)}
+.bookmark-btn.on{color:var(--warning);border-color:var(--warning)}
 .prose{font-size:17px;line-height:1.75;color:var(--fg-soft)}
 .prose h1,.prose h2,.prose h3{color:var(--fg);font-weight:700;letter-spacing:-.02em;line-height:1.25;margin:2em 0 .75em}
 .prose h2{font-size:1.6rem}.prose h3{font-size:1.2rem}
@@ -180,6 +192,38 @@ main{flex:1;position:relative;z-index:2}
 .confetti{position:fixed;inset:0;pointer-events:none;z-index:999;overflow:hidden}
 .cf{position:absolute;width:8px;height:8px;opacity:.9;animation:cfFall 2.5s ease-out forwards}
 @keyframes cfFall{0%{transform:translateY(-20px) rotate(0);opacity:1}100%{transform:translateY(100vh) rotate(720deg);opacity:0}}
+
+/* ============ TOAST ============ */
+.toast-wrap{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:1000;display:flex;flex-direction:column;gap:10px;align-items:center;pointer-events:none;width:calc(100% - 32px);max-width:400px}
+.toast{background:var(--bg-elev);border:1px solid var(--border-s);border-radius:14px;padding:14px 18px;display:flex;align-items:center;gap:12px;box-shadow:0 20px 40px rgba(0,0,0,.35);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);pointer-events:auto;animation:toastIn .4s var(--spring) both;font-size:14px;color:var(--fg);min-width:200px}
+.toast.out{animation:toastOut .3s var(--ease) both}
+.toast-icon{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0}
+.toast.success .toast-icon{background:var(--success);color:#000}
+.toast.error .toast-icon{background:var(--danger);color:#fff}
+.toast.info .toast-icon{background:var(--info);color:#fff}
+.toast.warning .toast-icon{background:var(--warning);color:#000}
+.toast-msg{flex:1;line-height:1.4}
+@keyframes toastIn{from{opacity:0;transform:translateY(20px) scale(.95)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes toastOut{to{opacity:0;transform:translateY(20px) scale(.95)}}
+
+/* ============ MODAL ============ */
+.modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.75);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:20px;z-index:1001;animation:fadeIn .2s var(--ease) both}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.modal-backdrop.out{animation:fadeOut .2s var(--ease) both}
+@keyframes fadeOut{to{opacity:0}}
+.modal{background:var(--bg-card,rgba(255,255,255,.03));background-color:var(--bg-elev);border:1px solid var(--border-s);border-radius:22px;padding:28px;max-width:400px;width:100%;text-align:center;animation:modalIn .3s var(--spring) both;box-shadow:0 30px 60px rgba(0,0,0,.5)}
+.modal-backdrop.out .modal{animation:modalOut .2s var(--ease) both}
+@keyframes modalIn{from{opacity:0;transform:scale(.9) translateY(20px)}to{opacity:1;transform:scale(1) translateY(0)}}
+@keyframes modalOut{to{opacity:0;transform:scale(.95) translateY(10px)}}
+.modal-icon{width:56px;height:56px;border-radius:50%;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-size:24px}
+.modal-icon.danger{background:rgba(255,69,58,.15);color:var(--danger)}
+.modal-icon.info{background:rgba(10,132,255,.15);color:var(--info)}
+.modal-icon.success{background:rgba(48,209,88,.15);color:var(--success)}
+.modal h3{font-size:1.25rem;font-weight:700;letter-spacing:-.02em;margin-bottom:10px;color:var(--fg)}
+.modal p{color:var(--fg-soft);font-size:14.5px;line-height:1.55;margin-bottom:24px}
+.modal-actions{display:flex;gap:10px;justify-content:center}
+.modal-actions .btn{flex:1;justify-content:center}
+
 @media(max-width:640px){
 .container{padding:0 20px}.hero{padding:60px 20px}
 .hd-in{padding:0 16px}.nav{display:none}
@@ -187,10 +231,9 @@ main{flex:1;position:relative;z-index:2}
 .levels{grid-template-columns:1fr}.lesson{padding:24px 20px 60px}.prose{font-size:16px}
 .stats{grid-template-columns:1fr;gap:8px}.nav-btns{flex-direction:column}.nav-btn{max-width:100%}.nav-btn.next{text-align:left}
 .orb{filter:blur(60px)}.stat-row{flex-direction:column;text-align:center}
+.toast-wrap{bottom:16px}
 }
 ::selection{background:var(--fg);color:var(--bg)}
-
-/* ============ Scroll Reveal 3D ============ */
 .reveal{opacity:0;transform:perspective(1000px) translateY(36px) rotateX(-7deg) translateZ(-40px) scale(.97);transform-origin:center bottom;transition:opacity .9s var(--ease),transform 1.1s var(--ease);transition-delay:var(--reveal-delay,0s);will-change:opacity,transform;backface-visibility:hidden}
 .reveal.visible{opacity:1;transform:perspective(1000px) translateY(0) rotateX(0) translateZ(0) scale(1)}
 .levels .lvl:nth-child(1){--reveal-delay:.05s}
@@ -219,6 +262,8 @@ main{flex:1;position:relative;z-index:2}
 <div class="scroll-progress"></div>
 <div class="bg-3d"><div class="orb orb1"></div><div class="orb orb2"></div><div class="orb orb3"></div></div>
 <div class="bg-grid"></div>
+<div class="toast-wrap" id="toastWrap"></div>
+<div id="modalRoot"></div>
 
 <header>
 <div class="hd-in">
@@ -257,15 +302,15 @@ nav:{home:'Beranda',curriculum:'Kurikulum',progress:'Progres',about:'Tentang'},
 hero:{badge:'Gratis & Open Source',title1:'Kuasai seni',title2:'berbicara dengan AI.',sub:'Belajar prompting dari nol sampai master — bilingual, interaktif, dan bisa diakses siapa aja. Karena masa depan bukan cuma buat yang bisa ngoding.',ctaPrimary:'Mulai Belajar',ctaSecondary:'Lihat Kurikulum'},
 stats:{levels:'Level',lessons:'Pelajaran',free:'Gratis'},
 curriculum:{eyebrow:'Kurikulum',title:'Dari nol ke master.',sub:'Lima level, puluhan pelajaran. Tiap bab punya contoh nyata, latihan, dan kuis.'},
-lesson:{complete:'Tandai Selesai',completed:'Selesai ✓',next:'Selanjutnya',prev:'Sebelumnya',playground:'Coba Sendiri',playgroundHint:'Tulis prompt kamu di sini',copy:'Copy',copied:'✓ Tersalin'},
+lesson:{complete:'Tandai Selesai',completed:'Selesai ✓',next:'Selanjutnya',prev:'Sebelumnya',playground:'Coba Sendiri',playgroundHint:'Tulis prompt kamu di sini',copy:'Copy',copied:'✓ Tersalin',minRead:'menit baca',bookmark:'Simpan',bookmarked:'Tersimpan'},
 quiz:{label:'Kuis',correct:'Benar! 🎉',wrong:'Belum tepat.',next:'Lanjut',finish:'Selesai'},
-progress:{title:'Progres Kamu',sub:'Semua progres disimpan di browser kamu. Gak ada yang dikirim ke mana-mana.',completed:'Pelajaran Selesai',reset:'Reset Progres',resetConfirm:'Yakin hapus semua progres?',empty:'Belum ada progres. Ayo mulai belajar!'},
+progress:{title:'Progres Kamu',sub:'Semua progres disimpan di browser kamu. Gak ada yang dikirim ke mana-mana.',completed:'Pelajaran Selesai',reset:'Reset Progres',resetConfirm:'Yakin hapus semua progres?',resetDesc:'Semua progres belajar kamu bakal hilang. Tindakan ini gak bisa dibatalkan.',empty:'Belum ada progres. Ayo mulai belajar!'},
 about:{title:'Tentang Gate School',body:'<p>Gate School adalah <strong>sekolah prompting AI gratis</strong> yang dibuat untuk siapa aja — pelajar, profesional, content creator, atau cuma penasaran.</p><p>Kami percaya <em>masa depan bukan cuma buat yang bisa ngoding</em>. Bisa berbicara dengan AI secara efektif adalah skill baru yang wajib dikuasai semua orang.</p><h2>Kenapa Gate School?</h2><ul><li><strong>Gratis total</strong> — gak ada paywall, gak ada iklan.</li><li><strong>Bilingual</strong> — Indonesia & English. Ganti kapan aja.</li><li><strong>Interaktif</strong> — playground, kuis, latihan.</li><li><strong>Open source</strong> — siapa aja bisa kontribusi.</li><li><strong>Selalu update</strong> — karena dunia AI bergerak cepat.</li></ul><h2>Kontribusi</h2><p>Punya ide bab baru, terjemahan, atau perbaikan? Kirim PR di GitHub. Semua kontribusi dihargai.</p>'},
 madeWith:'Dibuat dengan ❤️ untuk semua yang mau belajar',
 notFound:'Halaman gak ditemukan. Balik ke beranda?',
 backHome:'Balik ke Beranda',
-loading:'Memuat…',
-comingSoon:'📝 Konten pelajaran ini belum ditulis. Tambahin di objek LESSONS dalam file index.html.'
+comingSoon:'📝 Konten pelajaran ini belum ditulis. Tambahin di objek LESSONS dalam file index.html.',
+toast:{copied:'✓ Tersalin ke clipboard',resetOk:'Progres udah direset',saved:'Tersimpan',removed:'Dihapus',confirmReset:'Ya, reset'}
 },
 en:{
 brand:'Gate School',
@@ -273,15 +318,15 @@ nav:{home:'Home',curriculum:'Curriculum',progress:'Progress',about:'About'},
 hero:{badge:'Free & Open Source',title1:'Master the art of',title2:'talking to AI.',sub:'Learn prompting from zero to master — bilingual, interactive, and accessible to everyone. Because the future is not just for coders.',ctaPrimary:'Start Learning',ctaSecondary:'View Curriculum'},
 stats:{levels:'Levels',lessons:'Lessons',free:'Free'},
 curriculum:{eyebrow:'Curriculum',title:'From zero to master.',sub:'Five levels, dozens of lessons. Each chapter has real examples, practice, and quizzes.'},
-lesson:{complete:'Mark Complete',completed:'Completed ✓',next:'Next',prev:'Previous',playground:'Try It Yourself',playgroundHint:'Write your prompt here',copy:'Copy',copied:'✓ Copied'},
+lesson:{complete:'Mark Complete',completed:'Completed ✓',next:'Next',prev:'Previous',playground:'Try It Yourself',playgroundHint:'Write your prompt here',copy:'Copy',copied:'✓ Copied',minRead:'min read',bookmark:'Save',bookmarked:'Saved'},
 quiz:{label:'Quiz',correct:'Correct! 🎉',wrong:'Not quite.',next:'Next',finish:'Finish'},
-progress:{title:'Your Progress',sub:'All progress is stored in your browser. Nothing is sent anywhere.',completed:'Lessons Completed',reset:'Reset Progress',resetConfirm:'Delete all progress?',empty:'No progress yet. Start learning!'},
+progress:{title:'Your Progress',sub:'All progress is stored in your browser. Nothing is sent anywhere.',completed:'Lessons Completed',reset:'Reset Progress',resetConfirm:'Delete all progress?',resetDesc:'All your learning progress will be lost. This cannot be undone.',empty:'No progress yet. Start learning!'},
 about:{title:'About Gate School',body:'<p>Gate School is a <strong>free AI prompting school</strong> built for everyone — students, professionals, content creators, or the simply curious.</p><p>We believe <em>the future is not just for coders</em>. Being able to talk to AI effectively is a new skill everyone needs.</p><h2>Why Gate School?</h2><ul><li><strong>Completely free</strong> — no paywall, no ads.</li><li><strong>Bilingual</strong> — Indonesian & English.</li><li><strong>Interactive</strong> — playgrounds, quizzes, practice.</li><li><strong>Open source</strong> — anyone can contribute.</li><li><strong>Always updated</strong> — AI moves fast.</li></ul><h2>Contribute</h2><p>Got an idea for a new chapter, translation, or fix? Send a PR on GitHub. All contributions appreciated.</p>'},
 madeWith:'Made with ❤️ for everyone who wants to learn',
 notFound:'Page not found. Go home?',
 backHome:'Back Home',
-loading:'Loading…',
-comingSoon:'📝 Lesson content not written yet. Add it in the LESSONS object inside index.html.'
+comingSoon:'📝 Lesson content not written yet. Add it in the LESSONS object inside index.html.',
+toast:{copied:'✓ Copied to clipboard',resetOk:'Progress has been reset',saved:'Saved',removed:'Removed',confirmReset:'Yes, reset'}
 }
 };
 
@@ -345,8 +390,7 @@ id:`<h1>Apa Itu AI &amp; LLM?</h1>
 <p>Artinya: dia bisa <strong>salah dengan sangat percaya diri</strong>. Fenomena ini disebut <strong>halusinasi</strong>.</p>
 <blockquote>⚠️ <strong>Selalu verifikasi</strong> fakta penting. Apalagi soal medis, hukum, atau angka.</blockquote>
 <h3>2. Konteks Adalah Segalanya</h3>
-<p>AI gak tau kamu siapa, gak tau kamu kerja di mana, gak tau kamu suka nada formal atau santai.</p>
-<p><strong>Kecuali kamu kasih tau.</strong></p>
+<p>AI gak tau kamu siapa, gak tau kamu kerja di mana, gak tau kamu suka nada formal atau santai. <strong>Kecuali kamu kasih tau.</strong></p>
 <p>Semakin banyak konteks yang relevan, semakin bagus hasilnya.</p>
 <h3>3. AI Butuh Struktur</h3>
 <p>Prompt berantakan = hasil berantakan. Prompt terstruktur = hasil terstruktur.</p>
@@ -356,19 +400,14 @@ id:`<h1>Apa Itu AI &amp; LLM?</h1>
 <pre><code>Bikin artikel 500 kata tentang kopi arabika untuk blog
 kuliner. Nada santai, ada 3 subjudul, diakhiri tips
 menyeduh. Hindari istilah teknis.</code></pre>
-<p>Yang kedua lebih panjang, tapi <strong>hasilnya jauh lebih berguna</strong>.</p>
 <h2>Coba Sendiri</h2>
 <div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Prompt</span><button class="prompt-copy" onclick="copyPrompt(this)">Copy</button></div><div class="prompt-body">Kamu adalah penjelas yang sabar. Jelaskan apa itu "Large Language Model" ke anak SMA dalam 2 paragraf singkat, pakai analogi yang mudah dibayangkan. Hindari jargon teknis.</div></div>
-<p>Copy prompt di atas, coba di ChatGPT / Claude / Gemini. Perhatikan:</p>
-<ul><li>Apakah AI ngerti level pembacanya?</li><li>Apakah analoginya masuk akal?</li><li>Apakah panjangnya sesuai?</li></ul>
-<p>Coba juga ubah-ubah:</p>
-<ul><li>Ganti "anak SMA" jadi "nenek saya"</li><li>Ganti "2 paragraf" jadi "1 kalimat"</li><li>Ganti "analogi" jadi "contoh sehari-hari"</li></ul>
 <h2>Poin Kunci</h2>
 <ul><li>🧠 AI = pemrediksi teks, bukan mesin pencari</li><li>🔄 Setiap percakapan baru = mulai dari nol</li><li>📝 Prompt = satu-satunya cara kamu ngobrol sama AI</li><li>⚠️ Verifikasi selalu, terutama fakta penting</li></ul>
 <h2>Referensi</h2>
-<ul><li><a href="https://arxiv.org/abs/1706.03762" target="_blank" rel="noopener">Attention Is All You Need (Vaswani et al., 2017)</a></li><li><a href="https://platform.openai.com/docs/guides/prompt-engineering" target="_blank" rel="noopener">OpenAI — Prompt Engineering Guide</a></li><li><a href="https://docs.anthropic.com/" target="_blank" rel="noopener">Anthropic — Prompt Engineering</a></li></ul>
+<ul><li><a href="https://arxiv.org/abs/1706.03762" target="_blank" rel="noopener">Attention Is All You Need (Vaswani et al., 2017)</a></li><li><a href="https://platform.openai.com/docs/guides/prompt-engineering" target="_blank" rel="noopener">OpenAI — Prompt Engineering Guide</a></li></ul>
 <h2>Selanjutnya</h2>
-<p>Di pelajaran berikutnya, kita bedah <strong>anatomi prompt</strong> — komponen apa aja yang bikin prompt jadi kuat.</p>`,
+<p>Kita bedah <strong>anatomi prompt</strong> — komponen apa aja yang bikin prompt jadi kuat.</p>`,
 en:`<h1>What Are AI &amp; LLMs?</h1>
 <p>Before you can tell an AI to do anything, you have to meet it first.</p>
 <h2>Quick Intro</h2>
@@ -377,34 +416,27 @@ en:`<h1>What Are AI &amp; LLMs?</h1>
 <h2>Why This Matters</h2>
 <p>Because <strong>the only way to talk to an LLM is through prompts</strong>. No magic button, no menu. Just text.</p>
 <p>Analogy:</p><ul><li>You have a super smart assistant</li><li>But they <strong>can't read your mind</strong></li><li>And they <strong>forget everything</strong> the moment you leave the room</li></ul>
-<p>Your job: <strong>explain clearly and completely</strong> what you want, in a single message.</p>
 <h2>Three Facts That Change Everything</h2>
 <h3>1. AI Is a Predictor, Not a Fact-Finder</h3>
-<p>LLMs don't "look up" answers. They <strong>predict the next word</strong> based on patterns from billions of texts.</p>
-<p>Meaning: they can be <strong>confidently wrong</strong>. This is called <strong>hallucination</strong>.</p>
+<p>LLMs don't "look up" answers. They <strong>predict the next word</strong> based on patterns from billions of texts. Meaning: they can be <strong>confidently wrong</strong>. This is called <strong>hallucination</strong>.</p>
 <blockquote>⚠️ <strong>Always verify</strong> important facts. Especially medical, legal, or numeric.</blockquote>
 <h3>2. Context Is Everything</h3>
-<p>AI doesn't know who you are, where you work, or whether you prefer formal or casual.</p>
-<p><strong>Unless you tell it.</strong></p>
-<p>More relevant context = better output.</p>
+<p>AI doesn't know who you are, where you work, or whether you prefer formal or casual. <strong>Unless you tell it.</strong></p>
 <h3>3. AI Needs Structure</h3>
 <p>Messy prompt = messy output. Structured prompt = structured output.</p>
 <h2>Try It Yourself</h2>
 <div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Prompt</span><button class="prompt-copy" onclick="copyPrompt(this)">Copy</button></div><div class="prompt-body">You are a patient explainer. Explain what a "Large Language Model" is to a high schooler in 2 short paragraphs, using an easy-to-visualize analogy. Avoid technical jargon.</div></div>
-<p>Then try:</p>
-<ul><li>Replace "high schooler" with "my grandmother"</li><li>Replace "2 paragraphs" with "1 sentence"</li><li>Replace "analogy" with "everyday example"</li></ul>
 <h2>Key Points</h2>
 <ul><li>🧠 AI = text predictor, not a search engine</li><li>🔄 Every new conversation starts from zero</li><li>📝 Prompt = your only way to talk to AI</li><li>⚠️ Always verify, especially important facts</li></ul>
 <h2>References</h2>
-<ul><li><a href="https://arxiv.org/abs/1706.03762" target="_blank" rel="noopener">Attention Is All You Need (Vaswani et al., 2017)</a></li><li><a href="https://platform.openai.com/docs/guides/prompt-engineering" target="_blank" rel="noopener">OpenAI — Prompt Engineering Guide</a></li><li><a href="https://docs.anthropic.com/" target="_blank" rel="noopener">Anthropic — Prompt Engineering</a></li></ul>
+<ul><li><a href="https://arxiv.org/abs/1706.03762" target="_blank" rel="noopener">Attention Is All You Need (Vaswani et al., 2017)</a></li><li><a href="https://platform.openai.com/docs/guides/prompt-engineering" target="_blank" rel="noopener">OpenAI — Prompt Engineering Guide</a></li></ul>
 <h2>Next</h2>
-<p>We'll dissect the <strong>anatomy of a prompt</strong> — the components that make a prompt strong.</p>`
+<p>We'll dissect the <strong>anatomy of a prompt</strong>.</p>`
 },
 'level-1/02-anatomi-prompt':{
 id:`<h1>Anatomi Prompt</h1>
 <p>Prompt yang bagus bukan kebetulan. Ada strukturnya.</p>
 <h2>5 Komponen Inti</h2>
-<p>Setiap prompt kuat punya <strong>satu atau lebih</strong> dari ini:</p>
 <h3>1. Role (Peran)</h3>
 <p>Siapa AI yang harus kamu jadiin?</p>
 <pre><code>Kamu adalah chef profesional dengan 20 tahun pengalaman.</code></pre>
@@ -415,18 +447,13 @@ id:`<h1>Anatomi Prompt</h1>
 <h3>3. Context (Konteks)</h3>
 <p>Informasi latar belakang yang relevan.</p>
 <pre><code>Produk ini untuk anak muda 18-25 tahun yang suka kopi
-specialty. Brand tone: santai, sedikit humor, hindari
-kata "kekinian".</code></pre>
+specialty. Brand tone: santai, sedikit humor.</code></pre>
 <h3>4. Format (Format Output)</h3>
-<p>Gimana hasilnya harus keluar?</p>
 <pre><code>Format: 3 caption, tiap caption maksimal 150 karakter,
 diakhiri 5 hashtag relevan.</code></pre>
 <h3>5. Examples (Contoh)</h3>
 <p>Kasih 1-3 contoh hasil yang kamu mau. (Ini disebut <em>few-shot</em>.)</p>
-<pre><code>Contoh caption:
-"Kopi bukan minuman. Kopi adalah alasan bangun pagi."</code></pre>
 <h2>Template Universal</h2>
-<p>Simpan template ini. Pakai berkali-kali.</p>
 <div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Template</span><button class="prompt-copy" onclick="copyPrompt(this)">Copy</button></div><div class="prompt-body"># ROLE
 Kamu adalah [profesi/persona].
 
@@ -448,53 +475,23 @@ Nada: [formal/santai/...]
 
 # OUTPUT
 Langsung berikan hasilnya, tanpa penjelasan tambahan.</div></div>
-<h2>Contoh Penerapan</h2>
-<p><strong>Skenario:</strong> bikin email follow-up ke klien yang belum bayar.</p>
-<div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Prompt</span><button class="prompt-copy" onclick="copyPrompt(this)">Copy</button></div><div class="prompt-body"># ROLE
-Kamu adalah freelancer profesional yang sopan tapi tegas.
-
-# TASK
-Tulis email follow-up ke klien yang terlambat bayar invoice.
-
-# CONTEXT
-Klien: perusahaan kecil, sudah langganan 2 tahun.
-Invoice: 15 juta, terlambat 3 minggu.
-Hubungan: baik, tapi saya butuh uangnya segera.
-Nada: sopan, profesional, tidak menyerang.
-
-# FORMAT
-- Subjek email
-- Body maksimal 5 kalimat
-- Diakhiri call-to-action jelas
-
-# CONSTRAINTS
-- Jangan pakai kata "mendesak" atau "segera"
-- Tetap ramah
-
-# OUTPUT
-Langsung emailnya.</div></div>
 <h2>Poin Kunci</h2>
 <ul><li>5 komponen: Role, Task, Context, Format, Examples</li><li>Gak semua harus ada — pakai sesuai kebutuhan</li><li>Semakin spesifik = semakin bagus hasilnya</li><li>Template bisa dipakai berkali-kali</li></ul>
 <h2>Referensi</h2>
 <ul><li><a href="https://platform.openai.com/docs/guides/prompt-engineering" target="_blank" rel="noopener">OpenAI Prompt Engineering Guide</a></li><li><a href="https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview" target="_blank" rel="noopener">Anthropic Prompt Engineering</a></li></ul>
 <h2>Selanjutnya</h2>
-<p>Kita praktik langsung: <strong>menulis prompt pertamamu</strong> dari nol.</p>`,
+<p>Kita praktik langsung: <strong>menulis prompt pertamamu</strong>.</p>`,
 en:`<h1>Anatomy of a Prompt</h1>
 <p>A good prompt isn't an accident. It has structure.</p>
 <h2>5 Core Components</h2>
-<p>Every strong prompt has <strong>one or more</strong> of these:</p>
 <h3>1. Role</h3>
-<p>Who should the AI become?</p>
 <pre><code>You are a professional chef with 20 years of experience.</code></pre>
 <h3>2. Task</h3>
-<p>What should it do? <strong>Be specific.</strong></p>
 <p>❌ Bad: "make something about coffee"<br>✅ Good: "Write 3 Instagram captions about single origin arabica coffee"</p>
 <h3>3. Context</h3>
-<p>Relevant background.</p>
 <pre><code>Product is for 18-25 year olds who love specialty coffee.
-Brand tone: casual, slight humor, avoid buzzwords.</code></pre>
+Brand tone: casual, slight humor.</code></pre>
 <h3>4. Format</h3>
-<p>How should output look?</p>
 <pre><code>3 captions, each max 150 chars, ending with 5 hashtags.</code></pre>
 <h3>5. Examples</h3>
 <p>Give 1-3 examples of what you want. (This is <em>few-shot</em>.)</p>
@@ -521,12 +518,282 @@ Tone: [formal/casual/...]
 # OUTPUT
 Give the result directly, no extra explanation.</div></div>
 <h2>Key Points</h2>
-<ul><li>5 components: Role, Task, Context, Format, Examples</li><li>Not all required — use what fits</li><li>More specific = better output</li><li>Templates are reusable</li></ul>
+<ul><li>5 components: Role, Task, Context, Format, Examples</li><li>Not all required — use what fits</li><li>More specific = better output</li></ul>
 <h2>References</h2>
 <ul><li><a href="https://platform.openai.com/docs/guides/prompt-engineering" target="_blank" rel="noopener">OpenAI Prompt Engineering Guide</a></li><li><a href="https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview" target="_blank" rel="noopener">Anthropic Prompt Engineering</a></li></ul>
 <h2>Next</h2>
-<p>We practice: <strong>writing your first prompt</strong> from scratch.</p>`
+<p>We practice: <strong>writing your first prompt</strong>.</p>`
+},
+'level-1/03-prompt-pertamamu':{
+id:`<h1>Prompt Pertamamu</h1>
+<p>Sekarang saatnya praktik. Kita bikin prompt dari nol, step by step.</p>
+<h2>Mulai dari yang Sederhana</h2>
+<p>Anggap kamu mau bikin caption Instagram untuk produk kopi.</p>
+<p><strong>Percobaan 1 — prompt jelek:</strong></p>
+<pre><code>bikin caption kopi</code></pre>
+<p>Hasil: generic, gak sesuai brand, panjang gak karuan.</p>
+<p><strong>Percobaan 2 — tambah task:</strong></p>
+<pre><code>bikin 3 caption instagram tentang kopi arabika</code></pre>
+<p>Lebih baik, tapi masih hambar.</p>
+<p><strong>Percobaan 3 — tambah role:</strong></p>
+<pre><code>Kamu adalah copywriter yang jago bikin caption viral.</code></pre>
+<p><strong>Percobaan 4 — tambah konteks:</strong></p>
+<pre><code>Produk: kopi arabika single origin dari Toraja.
+Target: anak muda 20-30 tahun yang suka kopi specialty.
+Brand tone: santai, sedikit humor, gak sok keren.</code></pre>
+<p><strong>Percobaan 5 — tambah format & constraint:</strong></p>
+<pre><code>- Maksimal 120 karakter per caption
+- Diakhiri 5 hashtag relevan
+- Hindari kata "kekinian", "hits", "viral"</code></pre>
+<h2>Prompt Final</h2>
+<div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Prompt</span><button class="prompt-copy" onclick="copyPrompt(this)">Copy</button></div><div class="prompt-body"># ROLE
+Kamu adalah copywriter yang jago bikin caption Instagram viral.
+
+# TASK
+Bikin 3 caption Instagram untuk produk kopi arabika single origin Toraja.
+
+# CONTEXT
+Target: anak muda 20-30 tahun yang suka kopi specialty.
+Brand tone: santai, sedikit humor, gak sok keren.
+
+# FORMAT
+- Maksimal 120 karakter per caption
+- Diakhiri 5 hashtag relevan
+- Kasih pemisah antar caption
+
+# CONSTRAINTS
+- Hindari kata "kekinian", "hits", "viral"
+
+# OUTPUT
+Langsung 3 caption, tanpa penjelasan tambahan.</div></div>
+<h2>Perhatikan Bedanya</h2>
+<p>Prompt pertama (4 kata) vs prompt final (60+ kata). Hasil akhir jauh lebih berguna, tapi <strong>tetap gak makan waktu lebih dari 2 menit untuk nulisnya</strong>.</p>
+<h2>Poin Kunci</h2>
+<ul><li>Prompt bagus dibangun <strong>bertahap</strong>, bukan sekali jadi</li><li>Tambahin komponen satu-satu: Role → Task → Context → Format → Constraints</li><li>Test dulu, baru perbaiki</li><li>Iterasi itu normal — jangan takut revisi 3-4 kali</li></ul>
+<h2>Selanjutnya</h2>
+<p>Kita bahas <strong>kesalahan umum pemula</strong> yang bikin prompt kamu jelek.</p>`,
+en:`<h1>Your First Prompt</h1>
+<p>Time to practice. We build a prompt from scratch, step by step.</p>
+<h2>Start Simple</h2>
+<p>Say you want to write an Instagram caption for a coffee product.</p>
+<p><strong>Attempt 1 — bad prompt:</strong></p>
+<pre><code>write a caption about coffee</code></pre>
+<p>Result: generic, off-brand, awkward length.</p>
+<p><strong>Attempt 2 — add task:</strong></p>
+<pre><code>write 3 instagram captions about arabica coffee</code></pre>
+<p>Better, but still flat.</p>
+<p><strong>Attempt 3 — add role:</strong></p>
+<pre><code>You are a copywriter great at making viral captions.</code></pre>
+<p><strong>Attempt 4 — add context:</strong></p>
+<pre><code>Product: single-origin arabica coffee from Toraja.
+Target: 20-30 year olds who love specialty coffee.
+Brand tone: casual, slight humor, not trying too hard.</code></pre>
+<p><strong>Attempt 5 — add format & constraints:</strong></p>
+<pre><code>- Max 120 chars per caption
+- End with 5 relevant hashtags
+- Avoid "trendy", "hits", "viral"</code></pre>
+<h2>Final Prompt</h2>
+<div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Prompt</span><button class="prompt-copy" onclick="copyPrompt(this)">Copy</button></div><div class="prompt-body"># ROLE
+You are a copywriter great at making viral Instagram captions.
+
+# TASK
+Write 3 Instagram captions for a single-origin arabica coffee from Toraja.
+
+# CONTEXT
+Target: 20-30 year olds who love specialty coffee.
+Brand tone: casual, slight humor, not trying too hard.
+
+# FORMAT
+- Max 120 chars per caption
+- End with 5 relevant hashtags
+- Separate captions clearly
+
+# CONSTRAINTS
+- Avoid "trendy", "hits", "viral"
+
+# OUTPUT
+Just the 3 captions, no extra explanation.</div></div>
+<h2>Notice the Difference</h2>
+<p>First prompt (4 words) vs final prompt (60+ words). The result is far more useful, yet <strong>took less than 2 minutes to write</strong>.</p>
+<h2>Key Points</h2>
+<ul><li>Good prompts are built <strong>incrementally</strong></li><li>Add one component at a time: Role → Task → Context → Format → Constraints</li><li>Test first, refine after</li><li>Iteration is normal — don't fear 3-4 revisions</li></ul>
+<h2>Next</h2>
+<p>We'll cover <strong>common beginner mistakes</strong>.</p>`
+},
+'level-1/04-kesalahan-pemula':{
+id:`<h1>Kesalahan Umum Pemula</h1>
+<p>Kalau kamu baru mulai, kamu pasti bakal ngelakuin minimal 5 dari 7 kesalahan ini. Itu normal — yang penting kamu sadar dan perbaiki.</p>
+<h2>1. Terlalu Vague</h2>
+<p>❌ "Bikin konten yang bagus"<br>✅ "Bikin 5 ide konten TikTok tentang produktivitas untuk mahasiswa"</p>
+<p><strong>Obat:</strong> tanya diri sendiri — "kalau orang baca prompt ini tanpa konteks, apakah dia ngerti apa yang aku mau?"</p>
+<h2>2. Gak Kasih Konteks</h2>
+<p>AI gak tau kamu siapa, kerja di mana, atau target audiens kamu siapa. Kalau gak dikasih tau, dia nebak — dan tebakannya sering salah.</p>
+<h2>3. Numpuk Banyak Task Sekaligus</h2>
+<p>❌ "Bikin artikel 1000 kata, terus ringkas jadi 200 kata, terus translate ke Inggris, terus bikin caption sosmed-nya"</p>
+<p><strong>Obat:</strong> pecah jadi beberapa prompt terpisah. Hasilnya jauh lebih bagus.</p>
+<h2>4. Gak Kasih Format Output</h2>
+<p>Kalau gak diminta format spesifik, AI bakal pilih sendiri — biasanya jadi tembok teks panjang yang susah dibaca.</p>
+<p><strong>Obat:</strong> sebutin format yang kamu mau. Bullet list? Tabel? JSON? Markdown?</p>
+<h2>5. Gak Kasih Contoh</h2>
+<p>Kata "profesional", "santai", atau "menarik" itu <strong>subjektif</strong>. AI punya definisi sendiri yang mungkin beda sama kamu.</p>
+<p><strong>Obat:</strong> kasih 1-2 contoh output yang kamu suka. Ini teknik <em>few-shot</em>.</p>
+<h2>6. Gak Iterasi</h2>
+<p>Prompt pertama = draft. Prompt kedua = lebih baik. Prompt ketiga = biasanya udah bagus.</p>
+<p>Jangan puas sama percobaan pertama, tapi juga jangan langsung benci kalau hasil pertama jelek.</p>
+<h2>7. Percaya Mentah-mentah</h2>
+<p>AI bisa salah. Kadang salah dengan sangat percaya diri. Terutama soal:</p>
+<ul><li>Fakta & angka</li><li>Kutipan orang</li><li>Referensi buku/paper</li><li>Nasihat medis/hukum/keuangan</li></ul>
+<p><strong>Obat:</strong> selalu cross-check fakta penting dari sumber asli.</p>
+<h2>Poin Kunci</h2>
+<ul><li>Spesifik > vague</li><li>Konteks > asumsi</li><li>Satu task per prompt</li><li>Format jelas > format nebak</li><li>Contoh > abstrak</li><li>Iterasi > sekali jadi</li><li>Verifikasi > percaya buta</li></ul>
+<h2>Selanjutnya</h2>
+<p>Kita belajar <strong>berpikir seperti AI</strong> — supaya kamu bisa antisipasi apa yang bakal dia lakuin.</p>`,
+en:`<h1>Common Beginner Mistakes</h1>
+<p>If you're just starting, you'll make at least 5 of these 7 mistakes. That's normal — awareness is the first fix.</p>
+<h2>1. Too Vague</h2>
+<p>❌ "Make good content"<br>✅ "Give me 5 TikTok content ideas about productivity for college students"</p>
+<p><strong>Fix:</strong> ask yourself — "if a stranger read this prompt without context, would they know what I want?"</p>
+<h2>2. No Context</h2>
+<p>AI doesn't know who you are, where you work, or who your audience is. Without context, it guesses — and often guesses wrong.</p>
+<h2>3. Stacking Too Many Tasks</h2>
+<p>❌ "Write a 1000-word article, then summarize to 200 words, then translate to Spanish, then write social captions"</p>
+<p><strong>Fix:</strong> split into separate prompts. Results are far better.</p>
+<h2>4. No Output Format</h2>
+<p>Without a specified format, AI picks its own — usually a wall of text.</p>
+<p><strong>Fix:</strong> specify. Bullets? Table? JSON? Markdown?</p>
+<h2>5. No Examples</h2>
+<p>Words like "professional", "casual", or "engaging" are <strong>subjective</strong>. AI has its own definition that may differ from yours.</p>
+<p><strong>Fix:</strong> give 1-2 examples you like. This is the <em>few-shot</em> technique.</p>
+<h2>6. No Iteration</h2>
+<p>First prompt = draft. Second = better. Third = usually solid.</p>
+<p>Don't settle for the first try, but don't hate it either.</p>
+<h2>7. Blind Trust</h2>
+<p>AI can be wrong. Sometimes confidently wrong. Especially with:</p>
+<ul><li>Facts & numbers</li><li>Quotes</li><li>Book/paper references</li><li>Medical/legal/financial advice</li></ul>
+<p><strong>Fix:</strong> always cross-check important facts.</p>
+<h2>Key Points</h2>
+<ul><li>Specific > vague</li><li>Context > assumption</li><li>One task per prompt</li><li>Clear format > guessed format</li><li>Examples > abstractions</li><li>Iterate > one-shot</li><li>Verify > blind trust</li></ul>
+<h2>Next</h2>
+<p>We learn to <strong>think like an AI</strong>.</p>`
+},
+'level-2/01-zero-one-few-shot':{
+id:`<h1>Zero, One, Few-Shot</h1>
+<p>Ini konsep paling fundamental dalam prompting modern. Anggap ini kayak tiga level kesulitan.</p>
+<h2>Zero-Shot — Gak Kasih Contoh</h2>
+<p>Kamu langsung minta AI ngerjain sesuatu tanpa contoh.</p>
+<div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Zero-shot</span><button class="prompt-copy" onclick="copyPrompt(this)">Copy</button></div><div class="prompt-body">Klasifikasikan review ini sebagai positif, negatif, atau netral:
+"Produknya oke sih, tapi pengiriman lambat banget."</div></div>
+<p><strong>Kapan pakai:</strong> task simpel, AI udah "ngerti" dari training.</p>
+<h2>One-Shot — Kasih 1 Contoh</h2>
+<p>Kasih satu contoh dulu, baru minta AI ngerjain task serupa.</p>
+<div class="prompt-block"><div class="prompt-head"><span class="prompt-label">One-shot</span><button class="prompt-copy" onclick="copyPrompt(this)">Copy</button></div><div class="prompt-body">Contoh:
+Input: "Barang bagus, cepat sampai, recommended!"
+Output: POSITIF
+
+Sekarang klasifikasikan:
+Input: "Produknya oke sih, tapi pengiriman lambat banget."</div></div>
+<p><strong>Kapan pakai:</strong> kamu mau AI ngikutin format spesifik.</p>
+<h2>Few-Shot — Kasih 3-5 Contoh</h2>
+<p>Ini yang paling powerful. Semakin banyak contoh bagus, semakin konsisten output.</p>
+<div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Few-shot</span><button class="prompt-copy" onclick="copyPrompt(this)">Copy</button></div><div class="prompt-body">Contoh 1:
+Input: "Barang bagus, cepat sampai, recommended!"
+Output: POSITIF
+
+Contoh 2:
+Input: "Kecewa, barang rusak, gak sesuai deskripsi."
+Output: NEGATIF
+
+Contoh 3:
+Input: "Barang sampai, belum dipakai."
+Output: NETRAL
+
+Sekarang klasifikasikan:
+Input: "Produknya oke sih, tapi pengiriman lambat banget."</div></div>
+<h2>Kapan Pakai Yang Mana?</h2>
+<ul><li><strong>Zero-shot</strong> — task umum, gak butuh format spesifik (ringkas, terjemah)</li><li><strong>One-shot</strong> — mau ngasih arah tapi hemat token</li><li><strong>Few-shot</strong> — task butuh konsistensi (klasifikasi, extraction, gaya bahasa spesifik)</li></ul>
+<h2>Tips Few-Shot</h2>
+<ol><li>Contoh harus <strong>beragam</strong> — jangan 3 contoh yang mirip semua</li><li>Contoh harus <strong>benar</strong> — kalau ada salah, AI bakal ngikutin yang salah</li><li>Format contoh harus <strong>persis sama</strong> dengan yang kamu mau</li><li>Urutan berpengaruh — taruh contoh paling representatif di akhir</li></ol>
+<h2>Poin Kunci</h2>
+<ul><li>Zero-shot = default, cepat, gak repot</li><li>Few-shot = konsisten, akurat, tapi boros token</li><li>Semakin spesifik output yang kamu mau, semakin butuh contoh</li><li>Kualitas contoh > jumlah contoh</li></ul>
+<h2>Referensi</h2>
+<ul><li><a href="https://arxiv.org/abs/2005.14165" target="_blank" rel="noopener">Language Models are Few-Shot Learners (Brown et al., 2020)</a></li><li><a href="https://www.promptingguide.ai/techniques/fewshot" target="_blank" rel="noopener">Prompt Engineering Guide — Few-Shot</a></li></ul>
+<h2>Selanjutnya</h2>
+<p>Kita masuk ke teknik reasoning: <strong>Chain of Thought</strong>.</p>`,
+en:`<h1>Zero, One, Few-Shot</h1>
+<p>The most fundamental concept in modern prompting. Think of it as three difficulty levels.</p>
+<h2>Zero-Shot — No Examples</h2>
+<p>Ask AI to do something with no examples.</p>
+<div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Zero-shot</span><button class="prompt-copy" onclick="copyPrompt(this)">Copy</button></div><div class="prompt-body">Classify this review as positive, negative, or neutral:
+"The product is fine, but shipping was really slow."</div></div>
+<p><strong>When to use:</strong> simple tasks AI already "gets" from training.</p>
+<h2>One-Shot — One Example</h2>
+<div class="prompt-block"><div class="prompt-head"><span class="prompt-label">One-shot</span><button class="prompt-copy" onclick="copyPrompt(this)">Copy</button></div><div class="prompt-body">Example:
+Input: "Great product, fast shipping, recommended!"
+Output: POSITIVE
+
+Now classify:
+Input: "The product is fine, but shipping was really slow."</div></div>
+<p><strong>When to use:</strong> you need AI to follow a specific format.</p>
+<h2>Few-Shot — 3-5 Examples</h2>
+<p>The most powerful. More good examples = more consistent output.</p>
+<div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Few-shot</span><button class="prompt-copy" onclick="copyPrompt(this)">Copy</button></div><div class="prompt-body">Example 1:
+Input: "Great product, fast shipping, recommended!"
+Output: POSITIVE
+
+Example 2:
+Input: "Disappointed, item arrived broken."
+Output: NEGATIVE
+
+Example 3:
+Input: "Item arrived, haven't used it yet."
+Output: NEUTRAL
+
+Now classify:
+Input: "The product is fine, but shipping was really slow."</div></div>
+<h2>Which to Use?</h2>
+<ul><li><strong>Zero-shot</strong> — general tasks, no specific format (summarize, translate)</li><li><strong>One-shot</strong> — a nudge, token-efficient</li><li><strong>Few-shot</strong> — tasks needing consistency (classification, extraction, specific style)</li></ul>
+<h2>Few-Shot Tips</h2>
+<ol><li>Examples must be <strong>diverse</strong> — not 3 similar ones</li><li>Examples must be <strong>correct</strong> — AI mimics mistakes too</li><li>Format must be <strong>exactly</strong> what you want</li><li>Order matters — put the most representative last</li></ol>
+<h2>Key Points</h2>
+<ul><li>Zero-shot = default, fast, no setup</li><li>Few-shot = consistent, accurate, but token-heavy</li><li>More specific output = more need for examples</li><li>Quality of examples > quantity</li></ul>
+<h2>References</h2>
+<ul><li><a href="https://arxiv.org/abs/2005.14165" target="_blank" rel="noopener">Language Models are Few-Shot Learners (Brown et al., 2020)</a></li><li><a href="https://www.promptingguide.ai/techniques/fewshot" target="_blank" rel="noopener">Prompt Engineering Guide — Few-Shot</a></li></ul>
+<h2>Next</h2>
+<p>We dive into reasoning: <strong>Chain of Thought</strong>.</p>`
 }
+};
+
+const QUIZ={
+'level-1/01-apa-itu-ai':[
+{q:{id:'Apa yang dimaksud dengan "halusinasi" pada AI?',en:'What does "hallucination" mean in AI?'},
+o:{id:['AI mimpi','AI salah dengan sangat percaya diri','AI mati','AI jadi lambat'],en:['AI dreams','AI being confidently wrong','AI dies','AI slows down']},c:1},
+{q:{id:'Kapan AI "lupa" percakapan sebelumnya?',en:'When does AI "forget" a previous conversation?'},
+o:{id:['Setiap 10 menit','Setiap percakapan baru dimulai','Setelah 100 pesan','Tidak pernah'],en:['Every 10 min','When a new conversation starts','After 100 messages','Never']},c:1}
+],
+'level-1/02-anatomi-prompt':[
+{q:{id:'Mana yang BUKAN bagian dari 5 komponen inti prompt?',en:'Which is NOT one of the 5 core components?'},
+o:{id:['Role','Task','Format','Warna teks'],en:['Role','Task','Format','Text color']},c:3},
+{q:{id:'Bagian mana yang menentukan gaya dan kosakata AI?',en:'Which part shapes the AI\'s style and vocabulary?'},
+o:{id:['Task','Role','Format','Output'],en:['Task','Role','Format','Output']},c:1}
+],
+'level-1/03-prompt-pertamamu':[
+{q:{id:'Apa langkah PERTAMA saat bikin prompt?',en:'What is the FIRST step in building a prompt?'},
+o:{id:['Langsung minta hasil akhir','Tambah format','Mulai dari yang sederhana','Isi constraints'],en:['Ask for final output','Add format','Start simple','Add constraints']},c:2},
+{q:{id:'Kenapa prompt harus diiterasi?',en:'Why iterate on prompts?'},
+o:{id:['Biar keliatan rajin','Karena prompt pertama = draft','Biar AI bingung','Supaya panjang'],en:['To look busy','First prompt = draft','To confuse AI','To be long']},c:1}
+],
+'level-1/04-kesalahan-pemula':[
+{q:{id:'Mana yang bikin prompt jadi buruk?',en:'Which makes a prompt bad?'},
+o:{id:['Spesifik','Kasih konteks','Numpuk banyak task sekaligus','Kasih format'],en:['Specific','Has context','Stacks many tasks','Has format']},c:2},
+{q:{id:'Kalau AI ngasih fakta penting, apa yang harus kamu lakukan?',en:'If AI states an important fact, what should you do?'},
+o:{id:['Percaya langsung','Verifikasi dari sumber asli','Copy paste ke sosmed','Abaikan'],en:['Trust it','Verify from primary sources','Post to social media','Ignore it']},c:1}
+],
+'level-2/01-zero-one-few-shot':[
+{q:{id:'Few-shot artinya apa?',en:'What does few-shot mean?'},
+o:{id:['Gak kasih contoh','Kasih 1 contoh','Kasih 3-5 contoh','Kasih 100 contoh'],en:['No examples','1 example','3-5 examples','100 examples']},c:2},
+{q:{id:'Kapan zero-shot cocok dipakai?',en:'When is zero-shot best?'},
+o:{id:['Task butuh konsistensi','Task simpel & umum','Task butuh format spesifik','Task ekstraksi data'],en:['Tasks needing consistency','Simple & general tasks','Tasks needing specific format','Data extraction tasks']},c:1}
+]
 };
 
 const store={
@@ -536,9 +803,10 @@ set(k,v){try{localStorage.setItem('gs.'+k,JSON.stringify(v))}catch{}}
 let state={
 theme:store.get('theme','dark'),
 lang:store.get('lang','id'),
-progress:store.get('progress',{completed:{}}),
+progress:store.get('progress',{completed:{},bookmarks:{}}),
 quizState:{}
 };
+if(!state.progress.bookmarks)state.progress.bookmarks={};
 let lastRenderedHash=null;
 function save(){store.set('theme',state.theme);store.set('lang',state.lang);store.set('progress',state.progress)}
 
@@ -546,11 +814,60 @@ function t(k){const path=k.split('.');let v=I18N[state.lang];for(const p of path
 function isDone(l,s){return !!state.progress.completed[l+'/'+s]}
 function markDone(l,s){state.progress.completed[l+'/'+s]=true;save()}
 function unmarkDone(l,s){delete state.progress.completed[l+'/'+s];save()}
+function isBookmarked(l,s){return !!state.progress.bookmarks[l+'/'+s]}
+function toggleBookmark(l,s){const k=l+'/'+s;if(state.progress.bookmarks[k])delete state.progress.bookmarks[k];else state.progress.bookmarks[k]=true;save()}
 function levelProg(lvl){const total=lvl.lessons.length;const done=lvl.lessons.filter(x=>isDone(lvl.id,x.slug)).length;return{done,total,percent:total?done/total*100:0}}
 function totalLessons(){return CURRICULUM.reduce((s,l)=>s+l.lessons.length,0)}
 function totalDone(){return Object.keys(state.progress.completed).length}
 
-// ============ Scroll Reveal ============
+// ============ TOAST ============
+function toast(msg,type='info'){
+const wrap=document.getElementById('toastWrap');
+if(!wrap)return;
+const el=document.createElement('div');
+el.className='toast '+type;
+const icons={success:'✓',error:'✕',info:'i',warning:'!'};
+el.innerHTML=`<span class="toast-icon">${icons[type]||'i'}</span><span class="toast-msg">${msg}</span>`;
+wrap.appendChild(el);
+setTimeout(()=>{el.classList.add('out');setTimeout(()=>el.remove(),300)},2800);
+}
+
+// ============ MODAL ============
+function showModal(opts){
+return new Promise(resolve=>{
+const{title='',message='',icon='',iconType='info',confirmText='OK',cancelText=null,danger=false}=opts;
+const root=document.getElementById('modalRoot');
+const backdrop=document.createElement('div');
+backdrop.className='modal-backdrop';
+backdrop.innerHTML=`<div class="modal">
+${icon?`<div class="modal-icon ${iconType}">${icon}</div>`:''}
+${title?`<h3>${title}</h3>`:''}
+${message?`<p>${message}</p>`:''}
+<div class="modal-actions">
+${cancelText?`<button class="btn btn-g" data-act="cancel">${cancelText}</button>`:''}
+<button class="btn ${danger?'btn-danger':'btn-p'}" data-act="confirm">${confirmText}</button>
+</div>
+</div>`;
+root.appendChild(backdrop);
+function close(val){
+backdrop.classList.add('out');
+setTimeout(()=>{backdrop.remove();resolve(val)},200);
+}
+backdrop.addEventListener('click',e=>{
+const act=e.target.closest('[data-act]')?.dataset.act;
+if(act==='confirm')close(true);
+else if(act==='cancel')close(false);
+else if(e.target===backdrop)close(false);
+});
+const esc=e=>{if(e.key==='Escape'){document.removeEventListener('keydown',esc);close(false)}};
+document.addEventListener('keydown',esc);
+});
+}
+window.confirmDialog=async function(title,message,danger=false){
+return showModal({title,message,icon:danger?'⚠':'?',iconType:danger?'danger':'info',confirmText:t('toast.confirmReset'),cancelText:state.lang==='id'?'Batal':'Cancel',danger});
+};
+
+// ============ SCROLL REVEAL ============
 function setupReveal(){
 const els=document.querySelectorAll('.reveal');
 if(!els.length)return;
@@ -563,7 +880,6 @@ if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserv
 els.forEach(el=>observer.observe(el));
 }
 
-// ============ Scroll Progress ============
 function updateScrollProgress(){
 const bar=document.querySelector('.scroll-progress');
 if(!bar)return;
@@ -597,6 +913,7 @@ window.copyPrompt=function(btn){
 const body=btn.closest('.prompt-block').querySelector('.prompt-body');
 navigator.clipboard.writeText(body.textContent).then(()=>{
 const orig=btn.textContent;btn.textContent=t('lesson.copied');
+toast(t('toast.copied'),'success');
 setTimeout(()=>btn.textContent=orig,1500);
 });
 };
@@ -611,6 +928,7 @@ const area=document.getElementById('pgArea');
 if(!area||!area.value.trim())return;
 navigator.clipboard.writeText(area.value).then(()=>{
 const orig=btn.textContent;btn.textContent=t('lesson.copied');
+toast(t('toast.copied'),'success');
 setTimeout(()=>btn.textContent=orig,1500);
 });
 };
@@ -618,6 +936,13 @@ setTimeout(()=>btn.textContent=orig,1500);
 window.clearPlayground=function(){
 const area=document.getElementById('pgArea');
 if(area){area.value='';const cnt=document.getElementById('pgCount');if(cnt)cnt.textContent='0 karakter';area.focus()}
+};
+
+window.toggleBookmark=function(lid,slug){
+toggleBookmark(lid,slug);
+const now=isBookmarked(lid,slug);
+toast(now?t('toast.saved'):t('toast.removed'),now?'success':'info');
+render();
 };
 
 let ticking=false;
@@ -629,20 +954,12 @@ ticking=true;
 }
 window.addEventListener('scroll',onScroll,{passive:true});
 
-const QUIZ={
-'level-1/01-apa-itu-ai':[
-{q:{id:'Apa yang dimaksud dengan "halusinasi" pada AI?',en:'What does "hallucination" mean in AI?'},
-o:{id:['AI mimpi','AI salah dengan sangat percaya diri','AI mati','AI jadi lambat'],en:['AI dreams','AI being confidently wrong','AI dies','AI slows down']},c:1},
-{q:{id:'Kapan AI "lupa" percakapan sebelumnya?',en:'When does AI "forget" a previous conversation?'},
-o:{id:['Setiap 10 menit','Setiap percakapan baru dimulai','Setelah 100 pesan','Tidak pernah'],en:['Every 10 min','When a new conversation starts','After 100 messages','Never']},c:1}
-],
-'level-1/02-anatomi-prompt':[
-{q:{id:'Mana yang BUKAN bagian dari 5 komponen inti prompt?',en:'Which is NOT one of the 5 core components?'},
-o:{id:['Role','Task','Format','Warna teks'],en:['Role','Task','Format','Text color']},c:3},
-{q:{id:'Bagian mana yang menentukan gaya dan kosakata AI?',en:'Which part shapes the AI\'s style and vocabulary?'},
-o:{id:['Task','Role','Format','Output'],en:['Task','Role','Format','Output']},c:1}
-]
-};
+function readingTime(html){
+if(!html)return 5;
+const text=html.replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim();
+const words=text.split(' ').length;
+return Math.max(1,Math.ceil(words/220));
+}
 
 function renderNav(){
 const routes=[['#/','home'],['#/kurikulum','curriculum'],['#/progress','progress'],['#/tentang','about']];
@@ -726,11 +1043,18 @@ const key=lid+'/'+slug;
 const content=LESSONS[key]?.[state.lang]||LESSONS[key]?.id;
 const quiz=QUIZ[key];
 const done=isDone(lid,slug);
+const bm=isBookmarked(lid,slug);
 const fallback=!LESSONS[key]?.[state.lang]&&LESSONS[key]?.id;
+const rt=content?readingTime(content):5;
 return `<div class="lesson">
 <div class="crumb reveal"><a href="#/">${t('nav.home')}</a><span>›</span><a href="#/kurikulum/${lid}">Level ${lvl.num}</a><span>›</span><span>${lesson.title[state.lang]}</span></div>
 <h1 class="reveal">${lesson.title[state.lang]}</h1>
-<div class="lesson-meta reveal"><span>${lvl.title[state.lang]}</span><span>·</span><span>${state.lang==='id'?'5 menit baca':'5 min read'}</span>${fallback?'<span>·</span><span style="color:var(--warning)">EN coming soon</span>':''}</div>
+<div class="lesson-meta reveal">
+<span>${lvl.title[state.lang]}</span><span>·</span>
+<span>${rt} ${t('lesson.minRead')}</span>
+${fallback?'<span>·</span><span style="color:var(--warning)">EN coming soon</span>':''}
+<button class="bookmark-btn ${bm?'on':''}" onclick="toggleBookmark('${lid}','${slug}')">${bm?'★':'☆'} ${bm?t('lesson.bookmarked'):t('lesson.bookmark')}</button>
+</div>
 <div class="prose reveal">${content||`<p style="color:var(--fg-soft);padding:40px 0">${t('comingSoon')}</p>`}</div>
 ${content?`<div class="pg reveal"><div class="pg-head"><span class="pg-dot"></span><span class="pg-title">${t('lesson.playground')}</span></div><textarea id="pgArea" placeholder="${t('lesson.playgroundHint')}"></textarea><div class="pg-actions"><span class="pg-hint" id="pgCount">0 karakter</span><div style="display:flex;gap:8px"><button class="btn btn-g btn-sm" onclick="clearPlayground()">Clear</button><button class="btn btn-p btn-sm" onclick="copyPlayground(this)">${t('lesson.copy')}</button></div></div></div>`:''}
 ${content&&quiz?renderQuiz(key,quiz):''}
@@ -813,22 +1137,30 @@ else if(parts[0]==='progress')html=renderProgress();
 else if(parts[0]==='tentang')html=renderAbout();
 else html=render404();
 main.innerHTML=html;
+
 const pgArea=document.getElementById('pgArea');
 if(pgArea){pgArea.addEventListener('input',()=>{document.getElementById('pgCount').textContent=pgArea.value.length+' karakter'})}
+
 const cb=document.getElementById('completeBtn');
 if(cb){
 const hashParts=location.hash.replace(/^#/,'').split('/').filter(Boolean);
 if(hashParts.length===3){
-const[lid,slug]=[hashParts[1],hashParts[2]];
+const lid=hashParts[1],slug=hashParts[2];
 cb.addEventListener('click',()=>{
-if(isDone(lid,slug))unmarkDone(lid,slug);
-else{markDone(lid,slug);confetti();}
+if(isDone(lid,slug)){unmarkDone(lid,slug);}
+else{markDone(lid,slug);confetti();toast(state.lang==='id'?'🎉 Pelajaran selesai!':'🎉 Lesson complete!','success');}
 render();
 });
 }
 }
+
 const rb=document.getElementById('resetBtn');
-if(rb){rb.addEventListener('click',()=>{if(confirm(t('progress.resetConfirm'))){state.progress={completed:{}};save();render();}})}
+if(rb){
+rb.addEventListener('click',async()=>{
+const ok=await confirmDialog(t('progress.resetConfirm'),t('progress.resetDesc'),true);
+if(ok){state.progress={completed:{},bookmarks:{}};save();toast(t('toast.resetOk'),'success');render()}
+});
+}
 
 const currentHash=location.hash||'#/';
 const isNewRoute=currentHash!==lastRenderedHash;
@@ -877,6 +1209,24 @@ setTimeout(()=>{
 const el=document.getElementById('kurikulum');
 if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
 },120);
+}
+});
+
+// Keyboard navigation
+document.addEventListener('keydown',(e)=>{
+if(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA')return;
+const parts=location.hash.replace(/^#/,'').split('/').filter(Boolean);
+if(parts.length===3&&parts[0]==='kurikulum'){
+const[lid,slug]=[parts[1],parts[2]];
+const lvl=CURRICULUM.find(l=>l.id===lid);
+if(!lvl)return;
+const idx=lvl.lessons.findIndex(x=>x.slug===slug);
+if(e.key==='ArrowLeft'&&idx>0){
+location.hash=`#/kurikulum/${lid}/${lvl.lessons[idx-1].slug}`;
+}
+if(e.key==='ArrowRight'&&idx<lvl.lessons.length-1){
+location.hash=`#/kurikulum/${lid}/${lvl.lessons[idx+1].slug}`;
+}
 }
 });
 
